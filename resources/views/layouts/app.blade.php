@@ -7,11 +7,15 @@
         <link rel="icon" href="{{asset('css/favicon.ico')}}">
         <title>{{config('app.name', 'MAGAZYN')}}</title>
     </head>
-
     <body>
+        
         @include('includes.navbar')
-        @yield('content')
-        @include('includes.scripts')
-    </body>
+            @yield('content')
 
+            </div>
+        </div>
+
+    @include('includes.scripts')
+
+    </body>
 </html>
