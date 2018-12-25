@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::get('/', 'PagesController@index');
 Route::resource('materials', 'MaterialsController');
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index');

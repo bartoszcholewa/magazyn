@@ -27,4 +27,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function materials_creator(){
+        return $this->hasMany('App\Material', 'material_CREATOR_ID');
+    }
+
+    public function materials_editor(){
+        return $this->hasMany('App\Material', 'material_EDITOR_ID');
+    }
+
 }

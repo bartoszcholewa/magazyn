@@ -8,6 +8,16 @@ use App\Material;
 class MaterialsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -49,6 +59,10 @@ class MaterialsController extends Controller
         $material->material_WIDTH = $request->input('material_WIDTH');
         $material->material_LENGTH = $request->input('material_LENGTH');
         $material->material_GSQM = $request->input('material_GSQM');
+        $material->material_DESCRIPTION = $request->input('material_DESCRIPTION');
+        $material->material_URL = $request->input('material_URL');
+        $material->material_CREATOR_ID = auth()->user()->id;
+        $material->material_EDITOR_ID = auth()->user()->id;
         $material->save();
 
         return redirect('/materials')->with('success', 'Dodano nowy materiał');
@@ -100,9 +114,13 @@ class MaterialsController extends Controller
         $material->material_WIDTH = $request->input('material_WIDTH');
         $material->material_LENGTH = $request->input('material_LENGTH');
         $material->material_GSQM = $request->input('material_GSQM');
+        $material->material_DESCRIPTION = $request->input('material_DESCRIPTION');
+        $material->material_URL = $request->input('material_URL');
+        $material->material_EDITOR_ID = auth()->user()->id;
         $material->save();
 
-        return redirect('/materials')->with('success', 'Zaktualizowano materiał');
+        //return redirect('/materials')->with('success', 'Zaktualizowano materiał');
+        return redirect()->route('materials.show', $material->material_ID)->with('success', 'Zaktualizowano materiał');
     }
 
     /**

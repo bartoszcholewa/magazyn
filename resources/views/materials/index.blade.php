@@ -1,8 +1,8 @@
                 @extends('layouts.app')
 
                 @section('content')
-                <!-- materials/index.blade.php START -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="col-md-8">
                     <h2>Materiały:</h2>
                     @include('includes.messages')
                     @if (count($materials) > 0)
@@ -36,6 +36,6 @@
                             <p>Brak dodanych materiałów</p>
                         @endif
                     <a class="btn btn-primary" href="/materials/create" role="button">Nowy materiał</a>
+                    </div>
                 </main>
-                <!-- materials/index.blade.php STOP -->
                 @endsection

@@ -1,12 +1,38 @@
         <!-- NAVBAR START -->
         <!-- UPPER NAVBAR -->
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">PROMAX | Magazyn</a>
-            <ul class="navbar-nav px-3">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">PROMAX | Magazyn</a>
+
+            <!-- Authentication Links -->
+            <ul class="nav px-3">
+            @guest
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">Sign out</a>
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
+            @if (Route::has('register'))
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+            @endif
+            @else
+
+            <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="/dashboard">{{ Auth::user()->name }}</a>
+            </li>
+
+            <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                    </form>
+             </li>
+            @endguest
             </ul>
+            
         </nav>
         <!-- UPPER NAVBAR -->
         
@@ -17,13 +43,13 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="/">
+                                <a class="nav-link {{ Request::segment(1) === 'dashboard' ? 'active' : null }}" href="/dashboard">
                                     <span data-feather="home"></span>
                                     Dashboard <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/materials">
+                                <a class="nav-link {{ Request::segment(1) === 'materials' ? 'active' : null }}" href="/materials">
                                     <span data-feather="file"></span>
                                     Materiały
                                 </a>
