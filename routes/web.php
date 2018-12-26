@@ -20,3 +20,4 @@ Route::resource('materials', 'MaterialsController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+Route::resource('suppliers', 'SuppliersController');

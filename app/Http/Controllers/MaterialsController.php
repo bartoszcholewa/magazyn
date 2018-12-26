@@ -8,7 +8,7 @@ use App\Material;
 class MaterialsController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Autoryzacja dostępu
      *
      * @return void
      */

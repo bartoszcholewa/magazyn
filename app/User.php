@@ -36,4 +36,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Material', 'material_EDITOR_ID');
     }
 
+    public function suppliers_creator(){
+        return $this->hasMany('App\Supplier', 'supplier_CREATOR_ID');
+    }
+
+    public function suppliers_editor(){
+        return $this->hasMany('App\Supplier', 'supplier_EDITOR_ID');
+    }
+
 }

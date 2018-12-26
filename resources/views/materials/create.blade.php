@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- materials/index.blade.php START -->
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <h2>Nowy materiał</h2>
     <hr>
@@ -52,5 +51,8 @@
         {!! Form::close() !!}
           
 </main>
-<!-- materials/index.blade.php STOP -->
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script> 
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
 @endsection

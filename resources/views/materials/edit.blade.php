@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- materials/index.blade.php START -->
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <h2>Edytuj materiał: {{$material->material_NAME}}</h2>
     <hr>
@@ -49,9 +48,13 @@
                     </div>
                 </div>
             {{Form::hidden('_method', 'PUT')}}
+            <button onclick="goBack()" type="button" class="btn btn-outline-primary">Anuluj</button>
             {{Form::submit('Zaktualizuj', ['class'=>'btn btn-primary'])}}
         {!! Form::close() !!}
           
 </main>
-<!-- materials/index.blade.php STOP -->
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script> 
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
 @endsection
