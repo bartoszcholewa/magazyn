@@ -4,6 +4,7 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <h2>Nowy materiał</h2>
     <hr>
+
         {!! Form::open(['action' => 'MaterialsController@store', 'method' => 'POST']) !!}
                 <div class="form-group row @if($errors->has("material_NAME"))alert alert-danger" role="alert @endif ">
                     {{Form::label('material_NAME', 'Nazwa materiału:', ['class' => 'col-sm-3 col-form-label'])}}
@@ -14,7 +15,10 @@
                 <div class="form-group row @if($errors->has("material_SUPPLIER"))alert alert-danger" role="alert @endif ">
                     {{Form::label('material_SUPPLIER', 'Dostawca materiału:', ['class' => 'col-sm-3 col-form-label'])}}
                     <div class="col-sm-3">
-                        {{Form::select('material_SUPPLIER', ['Igepa' => 'Igepa', 'Integart' => 'Integart', 'Lambda' => 'Lambda', 'Cefol' => 'Cefol'], null, ['class' => 'form-control', 'placeholder' => 'Wybierz dostawcę...'])}}
+                        {{Form::select('material_SUPPLIER', $suppliers, null, ['class' => 'form-control', 'placeholder' => 'Wybierz dostawcę...'])}}
+                    </div>
+                    <div class="col-sm-4 col-md-offset-3">
+                        <a href="/suppliers/create">[Dodaj]</a>
                     </div>
                 </div>
                 <div class="form-group row @if($errors->has("material_WIDTH"))alert alert-danger" role="alert @endif ">

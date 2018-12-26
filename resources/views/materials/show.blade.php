@@ -1,11 +1,11 @@
                 @extends('layouts.app')
 
                 @section('content')
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                    <div class="col-md-8">
+                <main role="main" class="col-md-12 ml-sm-auto col-lg-10 pt-3 px-4">
+                    <div class="col-md-6">
                 @include('includes.messages')
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                         <h2>{{$material->material_NAME}}</h2><small>Dodano {{$material->created_at}} przez {{$material->creator->name}}</small> | 
                         <small>Edytowano {{$material->updated_at}} przez {{$material->editor->name}}</small>
                         </div>
@@ -28,14 +28,15 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-6">
-                            <p>Dostawca: {{$material->material_SUPPLIER}}<br>
+                            <p>Dostawca: {{$material->supplier->supplier_NAME}}<br>
                             Szerokość: {{$material->material_WIDTH}}cm<br>
                             Długość: {{$material->material_LENGTH}}m<br>
                             Gramatura: {{$material->material_GSQM}}g/m<sup>2</sup></p>
                         </div>
                     </div>
+                    @if($material->material_DESCRIPTION !== NULL)
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-12">
                             <div class="card border-secondary mb-6" style="max-width: 50rem;">
                                 <div class="card-header">Opis materiału</div>
                                 <div class="card-body text-secondary">
@@ -44,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     </div>
                 </main>
                 @endsection

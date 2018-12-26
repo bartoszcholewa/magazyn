@@ -14,4 +14,7 @@ class Material extends Model
     public function editor(){
         return $this->belongsTo('App\User', 'material_EDITOR_ID');
     }
+    public function supplier(){
+        return $this->belongsTo('App\Supplier', 'material_SUPPLIER');
+    }
 }

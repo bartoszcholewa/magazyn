@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Material;
+use App\Supplier;
 
 class MaterialsController extends Controller
 {
@@ -35,7 +36,8 @@ class MaterialsController extends Controller
      */
     public function create()
     {
-        return view('materials.create');
+        $suppliers = Supplier::all()->pluck('supplier_NAME', 'supplier_ID')->toArray();;
+        return view('materials.create')->with('suppliers', $suppliers);
     }
 
     /**
@@ -89,7 +91,9 @@ class MaterialsController extends Controller
     public function edit($id)
     {
         $material = Material::find($id);
-        return view('materials.edit')->with('material', $material);
+        $suppliers = Supplier::all()->pluck('supplier_NAME', 'supplier_ID')->toArray();;
+        /*return view('materials.edit')->with('material', $material, 'suppliers', $suppliers);*/
+        return view('materials.edit', compact('material', 'suppliers'));
     }
 
     /**

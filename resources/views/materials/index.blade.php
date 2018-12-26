@@ -23,7 +23,7 @@
                                     <tr>
                                         <td>{{$material->material_ID}}</td>
                                         <td><a href="/materials/{{$material->material_ID}}">{{$material->material_NAME}}</td>
-                                        <td>{{$material->material_SUPPLIER}}</td>
+                                        <td>{{$material->supplier->supplier_NAME}}</td>
                                         <td>{{$material->material_WIDTH}}</td>
                                         <td>{{$material->material_LENGTH}}</td>
                                         <td>{{$material->material_GSQM}}</td>

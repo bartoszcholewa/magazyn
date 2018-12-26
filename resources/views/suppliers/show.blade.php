@@ -21,7 +21,7 @@
                 </div>
                 @if($supplier->supplier_LOGO !== 'nologo.jpg')
                     <div class="col align-self-end">
-                    <a href="{{$supplier->supplier_URL}}"><img src="/storage/supplier_LOGO/{{$supplier->supplier_LOGO}}" class="img-responsive img-fluid" alt="Integart – media do druku wielkoformatowego, drukarki latexowe i UV"></a>
+                    <a href="{{$supplier->supplier_URL}}"><img src="/storage/supplier_LOGO/{{$supplier->supplier_LOGO}}" class="img-responsive img-fluid" style="max-height: 70px" alt="Integart – media do druku wielkoformatowego, drukarki latexowe i UV"></a>
                     </div>
                 @endif
             </div>
