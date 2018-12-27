@@ -42,7 +42,7 @@
                 <div class="form-group row @if($errors->has("material_DESCRIPTION"))alert alert-danger" role="alert @endif ">
                     {{Form::label('material_DESCRIPTION', 'Opis materiału:', ['class' => 'col-sm-3 col-form-label'])}}
                     <div class="col-sm-6">
-                        {{Form::textarea('material_DESCRIPTION', ' 1', ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
+                        {{Form::textarea('material_DESCRIPTION', '', ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
                     </div>
                 </div>
                 <div class="form-group row @if($errors->has("material_URL"))alert alert-danger" role="alert @endif ">

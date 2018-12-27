@@ -62,6 +62,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                    <a class="nav-link {{ Request::segment(1) === 'rolls' ? 'active' : null }}" href="/rolls">
+                                        <i class="far fa-dot-circle"></i>
+                                        Rolki
+                                    </a>
+                                </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="fas fa-user-tie"></i>
                                     Customers

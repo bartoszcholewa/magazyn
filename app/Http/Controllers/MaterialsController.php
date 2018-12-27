@@ -15,7 +15,7 @@ class MaterialsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth');
     }
 
     /**
@@ -54,6 +54,8 @@ class MaterialsController extends Controller
             'material_WIDTH' => 'required',
             'material_LENGTH' => 'required',
             'material_GSQM' => 'required',
+            'material_DESCRIPTION' => 'nullable',
+            'material_URL' => 'nullable',
         ]);
         $material = new Material;
         $material->material_NAME = $request->input('material_NAME');
@@ -91,7 +93,7 @@ class MaterialsController extends Controller
     public function edit($id)
     {
         $material = Material::find($id);
-        $suppliers = Supplier::all()->pluck('supplier_NAME', 'supplier_ID')->toArray();;
+        $suppliers = Supplier::all()->pluck('supplier_NAME', 'supplier_ID')->toArray();
         /*return view('materials.edit')->with('material', $material, 'suppliers', $suppliers);*/
         return view('materials.edit', compact('material', 'suppliers'));
     }
@@ -111,6 +113,8 @@ class MaterialsController extends Controller
             'material_WIDTH' => 'required',
             'material_LENGTH' => 'required',
             'material_GSQM' => 'required',
+            'material_DESCRIPTION' => 'nullable',
+            'material_URL' => 'nullable',
         ]);
         $material = Material::find($id);
         $material->material_NAME = $request->input('material_NAME');
