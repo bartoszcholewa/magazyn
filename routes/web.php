@@ -16,9 +16,11 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'PagesController@index');
+Route::get('/materials/{id}/raport', 'MaterialsController@raport');
 Route::resource('materials', 'MaterialsController');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
 Route::resource('suppliers', 'SuppliersController');
 Route::resource('rolls', 'RollsController');
+Route::resource('orders', 'OrdersController');

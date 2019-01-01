@@ -1,9 +1,8 @@
                 @extends('layouts.app')
-
+                @include('includes.messages')
                 @section('content')
                 <main role="main" class="col-md-12 ml-sm-auto col-lg-10 pt-3 px-4">
                     <div class="col-md-6">
-                @include('includes.messages')
                     <div class="row">
                         <div class="col-sm-8">
                         <h2>{{$material->material_NAME}}</h2><small>Dodano {{$material->created_at}} przez {{$material->creator->name}}</small> | 
@@ -20,6 +19,7 @@
                             <a class="btn btn-outline-primary btn-sm" target="_blank" href="{{$material->material_URL}}" role="button">Idź do sklepu</a>
                             @if(!Auth::guest())
                                 <a class="btn btn-primary btn-sm" href="/materials/{{$material->material_ID}}/edit" role="button">Edytuj</a>
+                                <a class="btn btn-primary btn-sm" href="/materials/{{$material->material_ID}}/raport" role="button">Raport</a>
                                 {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Are you sure?")'])}}
                                 {!!Form::close()!!}
                             @endif

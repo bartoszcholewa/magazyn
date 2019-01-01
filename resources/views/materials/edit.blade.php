@@ -3,55 +3,83 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <h2>Edytuj materiał: {{$material->material_NAME}}</h2>
     <hr>
+    @php ($invalid = "form-control")
+    {!! Form::open(['action' => ['MaterialsController@update', $material->material_ID], 'method' => 'POST']) !!}
+    <div class="row">
+        <div class="col col-lg-4">
 
-        {!! Form::open(['action' => ['MaterialsController@update', $material->material_ID], 'method' => 'POST']) !!}
-                <div class="form-group row @if($errors->has("material_NAME"))alert alert-danger" role="alert @endif ">
-                    {{Form::label('material_NAME', 'Nazwa materiału:', ['class' => 'col-sm-3 col-form-label'])}}
-                    <div class="col-sm-3">
-                        {{Form::text('material_NAME', $material->material_NAME, ['class' => 'form-control', 'placeholder' => 'np. Latex Premium'])}}
+            <div class="form-group">
+                {{Form::label('material_NAME', 'Nazwa:')}}
+                @if($errors->has("material_NAME")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                {{Form::text('material_NAME', $material->material_NAME, ['class' => $invalid, 'placeholder' => 'np. Latex Premium'])}}
+            </div>
+
+            <div class="form-group">
+                {{Form::label('material_SUPPLIER', 'Dostawca:')}}
+                <div class="input-group mb-12">
+                    @if($errors->has("material_SUPPLIER")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                    {{Form::select('material_SUPPLIER', $suppliers , $material->material_SUPPLIER, ['class' => $invalid])}}
+                    <div class="input-group-append">
+                        <a class="btn btn-outline-primary" href="/suppliers/create" role="button">Dodaj</a>
                     </div>
                 </div>
-                <div class="form-group row @if($errors->has("material_SUPPLIER"))alert alert-danger" role="alert @endif ">
-                    {{Form::label('material_SUPPLIER', 'Dostawca materiału:', ['class' => 'col-sm-3 col-form-label'])}}
-                    <div class="col-sm-3">
-                        {{Form::select('material_SUPPLIER', $suppliers , $material->material_SUPPLIER, ['class' => 'form-control'])}}
+            </div>
+
+            <div class="form-group">
+                {{Form::label('material_WIDTH', 'Szerokość:')}}
+                <div class="input-group mb-12">
+                    @if($errors->has("material_WIDTH")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                    {{Form::number('material_WIDTH', $material->material_WIDTH, ['class' => $invalid, 'placeholder' => 'np. 137.2', 'aria-describedby' => 'basic-addon2', 'step'=>'any'])}}
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2" style="width:64px">cm</span>
                     </div>
                 </div>
-                <div class="form-group row @if($errors->has("material_WIDTH"))alert alert-danger" role="alert @endif ">
-                    {{Form::label('material_WIDTH', 'Szerokość materiału (cm):', ['class' => 'col-sm-3 col-form-label'])}}
-                    <div class="col-sm-3">
-                        {{Form::number('material_WIDTH', $material->material_WIDTH, ['class' => 'form-control', 'placeholder' => 'np. 137.2', 'step'=>'any'])}}
+            </div>
+
+            <div class="form-group">
+                {{Form::label('material_LENGTH', 'Długość:')}}
+                <div class="input-group mb-12">
+                    @if($errors->has("material_LENGTH")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                    {{Form::number('material_LENGTH', $material->material_LENGTH, ['class' => $invalid, 'placeholder' => 'np. 50.5', 'aria-describedby' => 'basic-addon2', 'step'=>'any'])}}
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2" style="width:64px">m</span>
                     </div>
                 </div>
-                <div class="form-group row @if($errors->has("material_LENGTH"))alert alert-danger" role="alert @endif ">
-                    {{Form::label('material_LENGTH', 'Długość materiału (m):', ['class' => 'col-sm-3 col-form-label'])}}
-                    <div class="col-sm-3">
-                        {{Form::number('material_LENGTH', $material->material_LENGTH, ['class' => 'form-control', 'placeholder' => 'np. 50.5', 'step'=>'any'])}}
+            </div>
+
+            <div class="form-group">
+                {{Form::label('material_GSQM', 'Gramatura:')}}
+                <div class="input-group mb-12">
+                    @if($errors->has("material_GSQM")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                    {{Form::number('material_GSQM', $material->material_GSQM, ['class' => $invalid, 'placeholder' => 'np. 200', 'aria-describedby' => 'basic-addon2', 'step'=>'any'])}}
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2" style="width:64px">g/m<sup>2</sup></span>
                     </div>
                 </div>
-                <div class="form-group row @if($errors->has("material_GSQM"))alert alert-danger" role="alert @endif ">
-                    {{Form::label('material_GSQM', 'Gramatura materiału (g/m2):', ['class' => 'col-sm-3 col-form-label'])}}
-                    <div class="col-sm-3">
-                        {{Form::number('material_GSQM', $material->material_GSQM, ['class' => 'form-control', 'placeholder' => 'np. 200', 'step'=>'any'])}}
-                    </div>
-                </div>
-                <div class="form-group row @if($errors->has("material_DESCRIPTION"))alert alert-danger" role="alert @endif ">
-                    {{Form::label('material_DESCRIPTION', 'Opis materiału:', ['class' => 'col-sm-3 col-form-label'])}}
-                    <div class="col-sm-6">
-                        {{Form::textarea('material_DESCRIPTION', $material->material_DESCRIPTION, ['id' => 'article-ckeditor', 'class' => 'form-control'])}}
-                    </div>
-                </div>
-                <div class="form-group row @if($errors->has("material_URL"))alert alert-danger" role="alert @endif ">
-                    {{Form::label('material_URL', 'URL materiału:', ['class' => 'col-sm-3 col-form-label'])}}
-                    <div class="col-sm-6">
-                        {{Form::text('material_URL', $material->material_URL, ['class' => 'form-control', 'placeholder' => 'http://www...'])}}
-                    </div>
-                </div>
+            </div>
+
+            <div class="form-group">
+                {{Form::label('material_URL', 'Strona produktu:')}}
+                @if($errors->has("material_URL")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                {{Form::text('material_URL', $material->material_URL, ['class' => $invalid, 'placeholder' => 'http://www...'])}}
+            </div>
+        </div>
+        <div class="col col-lg-6">
+            <div class="form-group">
+                {{Form::label('material_DESCRIPTION', 'Opis:')}}
+                @if($errors->has("material_DESCRIPTION")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                {{Form::textarea('material_DESCRIPTION', $material->material_DESCRIPTION, ['id' => 'article-ckeditor', 'class' => $invalid])}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-6">
             {{Form::hidden('_method', 'PUT')}}
             <button onclick="goBack()" type="button" class="btn btn-outline-primary">Anuluj</button>
             {{Form::submit('Zaktualizuj', ['class'=>'btn btn-primary'])}}
-        {!! Form::close() !!}
-          
+        </div>
+    </div>
+    {!! Form::close() !!}
 </main>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script> 

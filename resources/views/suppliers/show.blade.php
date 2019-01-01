@@ -1,9 +1,8 @@
 @extends('layouts.app')
-
+@include('includes.messages')
 @section('content')
     <main role="main" class="col-md-12 ml-sm-auto col-lg-10 pt-3 px-4">
         <div class="col-md-6">
-        @include('includes.messages')
             <div class="row">
                 <div class="col-sm-8">
                     <h2>{{$supplier->supplier_NAME}}</h2>

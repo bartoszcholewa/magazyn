@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use Session;
 use App\Material;
 use App\Supplier;
 use App\Roll;
+use App\Order;
 
 class RollsController extends Controller
 {
@@ -27,7 +30,9 @@ class RollsController extends Controller
      */
     public function index()
     {
-        $rolls = Roll::all();
+        // Load rolls table + load for each coresponding orders
+        $rolls = Roll::withCount('orders')->get(); 
+        Session::put('requestReferrer', URL::current());
         return view('rolls.index')->with('rolls', $rolls);
     }
 
@@ -86,7 +91,9 @@ class RollsController extends Controller
         $roll->roll_EDITOR = auth()->user()->id;
         $roll->save();
 
-        return redirect('/rolls')->with('success', 'Dodano nową rolkę');
+        //return redirect('/rolls')->with('success', 'Dodano nową rolkę');
+        //return redirect(Session::get('requestReferrer'))->with('success', 'Dodano nową rolkę');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Dodano nową rolkę: <b>'.$request->input('roll_NAME').'</b>');
     }
 
     /**
@@ -111,7 +118,6 @@ class RollsController extends Controller
     {
         $roll = Roll::find($id);
         $materials = Material::all()->pluck('material_NAME', 'material_ID')->toArray();
-        /*return view('materials.edit')->with('material', $material, 'suppliers', $suppliers);*/
         return view('rolls.edit', compact('roll', 'materials'));
     }
 
@@ -156,11 +162,13 @@ class RollsController extends Controller
         } else {
             $roll->roll_LENGTH = $request->input('roll_LENGTH');
         }
-        $roll->roll_CREATOR = auth()->user()->id;
         $roll->roll_EDITOR = auth()->user()->id;
         $roll->save();
 
-        return redirect()->route('rolls.show', $roll->roll_ID)->with('success', 'Zaktualizowano rolkę');
+        //return redirect()->route('rolls.show', $roll->roll_ID)->with('success', 'Zaktualizowano rolkę');
+        //return redirect(Session::get('requestReferrer'))->with('success', 'Zaktualizowano rolkę');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Zaktualizowano rolkę: <b>'.$request->input('roll_NAME').'</b>');
+        
     }
 
     /**
@@ -173,6 +181,8 @@ class RollsController extends Controller
     {
         $roll = Roll::find($id);
         $roll->delete();
-        return redirect('/rolls')->with('success', 'Usunięto rolkę');
+        //return redirect('/rolls')->with('success', 'Usunięto rolkę');
+        //return redirect(Session::get('requestReferrerDelete'))->with('success', 'Usunięto rolkę');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Usunięto rolkę: <b>'.$roll->roll_NAME.'</b>');
     }
 }

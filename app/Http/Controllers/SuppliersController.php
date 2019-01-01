@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
+use Session;
 use App\Supplier;
 
 class SuppliersController extends Controller
@@ -25,6 +27,7 @@ class SuppliersController extends Controller
     public function index()
     {
         $suppliers = Supplier::all();
+        Session::put('requestReferrer', URL::current());
         return view('suppliers.index')->with('suppliers', $suppliers);
     }
 
@@ -48,6 +51,14 @@ class SuppliersController extends Controller
     {
         $this->validate($request, [
             'supplier_NAME' => 'required',
+            'supplier_ADDRESS' => 'nullable',
+            'supplier_PHONE' => 'nullable',
+            'supplier_EMAIL' => 'email|nullable',
+            'supplier_URL' => 'url|nullable',
+            'supplier_DESCRIPTION' => 'nullable',
+            'supplier_REP_NAME' => 'nullable',
+            'supplier_REP_PHONE' => 'nullable',
+            'supplier_REP_EMAIL' => 'email|nullable',
             'supplier_LOGO' => 'image|nullable|max:1999'
         ]);
 
@@ -82,7 +93,8 @@ class SuppliersController extends Controller
         $supplier->supplier_LOGO = $fileNameToStore;
         $supplier->save();
 
-        return redirect('/suppliers')->with('success', 'Dodano nowego dostawcę');
+        //return redirect('/suppliers')->with('success', 'Dodano nowego dostawcę');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Dodano nowego dostawcę: <b>'.$request->input('supplier_NAME').'</b>');
     }
 
     /**
@@ -120,6 +132,15 @@ class SuppliersController extends Controller
     {
         $this->validate($request, [
             'supplier_NAME' => 'required',
+            'supplier_ADDRESS' => 'nullable',
+            'supplier_PHONE' => 'nullable',
+            'supplier_EMAIL' => 'email|nullable',
+            'supplier_URL' => 'url|nullable',
+            'supplier_DESCRIPTION' => 'nullable',
+            'supplier_REP_NAME' => 'nullable',
+            'supplier_REP_PHONE' => 'nullable',
+            'supplier_REP_EMAIL' => 'email|nullable',
+            'supplier_LOGO' => 'image|nullable|max:1999'
         ]);
 
         //File Upload
@@ -153,7 +174,8 @@ class SuppliersController extends Controller
         $supplier->save();
 
         //return redirect('/suppliers')->with('success', 'Dodano nowego dostawcę');
-        return redirect()->route('suppliers.show', $supplier->supplier_ID)->with('success', 'Zaktualizowano dostawcę');
+        //return redirect()->route('suppliers.show', $supplier->supplier_ID)->with('success', 'Zaktualizowano dostawcę');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Zaktualizowano dostawcę: <b>'.$request->input('supplier_NAME').'</b>');
     }
 
     /**
@@ -166,15 +188,16 @@ class SuppliersController extends Controller
     {
         $supplier = Supplier::find($id);
 
-        if(auth()->user()->id !==$supplier->supplier_CREATOR_ID){
-            return redirect('/suppliers')->with('error', 'Tylko autor może usunąć dostawcę');
-        }
+        //if(auth()->user()->id !==$supplier->supplier_CREATOR_ID){
+        //    return redirect('/suppliers')->with('error', 'Tylko autor może usunąć dostawcę');
+        //}
 
         if ($supplier->supplier_LOGO != 'nologo.jpg'){
             // Delete Image
             Storage::delete('public/supplier_LOGO/'.$supplier->supplier_LOGO);
         }
         $supplier->delete();
-        return redirect('/suppliers')->with('success', 'Usunięto dostawcę');
+        //return redirect('/suppliers')->with('success', 'Usunięto dostawcę');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Usunięto dostawcę: <b>'.$supplier->supplier_NAME.'</b>');
     }
 }

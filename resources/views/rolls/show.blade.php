@@ -1,12 +1,11 @@
 @extends('layouts.app')
-
+@include('includes.messages')
 @section('content')
 <main role="main" class="col-md-12 ml-sm-auto col-lg-10 pt-3 px-4">
     <div class="col-md-6">
-@include('includes.messages')
     <div class="row">
         <div class="col-sm-8">
-        <h2>{{$roll->roll_NAME}}</h2><small>Dodano {{$roll->created_at}} przez {{$roll->creator->name}}</small> | 
+        <h2>Rolka {{$roll->roll_NAME}}</h2><small>Dodano {{$roll->created_at}} przez {{$roll->creator->name}}</small> | 
         <small>Edytowano {{$roll->updated_at}} przez {{$roll->editor->name}}</small>
         </div>
     </div>
@@ -31,7 +30,7 @@
             Data: {{$roll->roll_DATE}}<br>
             Status: {{$roll->roll_STATUS}}<br>
             Opis: {{$roll->roll_DESCRIPTION}}<br>
-            Aktualna długość: {{$roll->roll_LENGTH}}m<br>
+            Długość początkowa: {{$roll->roll_LENGTH}}m<br>
             Uszkodzona: {{$roll->roll_DEFECTED}}<br>
             Faktura: <a href="/storage/faktury/{{$roll->roll_INVOICE_FILE}}">{{$roll->roll_INVOICE_NR}}</a><br>
             Status faktury: {{$roll->roll_INVOICE_STATUS}}</p>

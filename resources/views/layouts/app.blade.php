@@ -15,7 +15,7 @@
             </div>
         </div>
 
-    @include('includes.scripts')
+@include('includes.scripts')
 
     </body>
 </html>

@@ -50,23 +50,29 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link {{ Request::segment(1) === 'suppliers' ? 'active' : null }}" href="/suppliers">
+                                    <i class="fas fa-truck"></i>
+                                    Dostawcy
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link {{ Request::segment(1) === 'materials' ? 'active' : null }}" href="/materials">
                                     <i class="fas fa-file"></i>
                                     Materiały
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::segment(1) === 'suppliers' ? 'active' : null }}" href="/suppliers">
-                                    <i class="fas fa-shopping-cart"></i>
-                                    Dostawcy
+                                <a class="nav-link {{ Request::segment(1) === 'rolls' ? 'active' : null }}" href="/rolls">
+                                    <i class="far fa-dot-circle"></i>
+                                    Rolki
                                 </a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link {{ Request::segment(1) === 'rolls' ? 'active' : null }}" href="/rolls">
-                                        <i class="far fa-dot-circle"></i>
-                                        Rolki
-                                    </a>
-                                </li>
+                                <a class="nav-link {{ Request::segment(1) === 'orders' ? 'active' : null }}" href="/orders">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Zlecenia
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <i class="fas fa-user-tie"></i>
@@ -88,54 +94,21 @@
                         </ul>
 
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Rolki:</span>
+                        <span>Raporty:</span>
                         <a class="d-flex align-items-center text-muted" href="#">
                             <i class="fas fa-plus-circle"></i>
                         </a>
                     </h6>
+
                     <ul class="nav flex-column mb-2">
+                        @foreach (Navmat::all() as $material)
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/materials/{{$material->material_ID}}/raport">
                                 <i class="far fa-dot-circle"></i>
-                                Latex Premium
+                                {{$material->material_NAME}}
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="far fa-dot-circle"></i>
-                                Flizelina
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="far fa-dot-circle"></i>
-                                Canvas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="far fa-dot-circle"></i>
-                                Laminat
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="far fa-dot-circle"></i>
-                                Easy-Stick
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="far fa-dot-circle"></i>
-                                Winyl na Flizelinie
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="far fa-dot-circle"></i>
-                                Winyl na Flizelinie Canvas
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                     </div>
                 </nav>

@@ -17,4 +17,7 @@ class Material extends Model
     public function supplier(){
         return $this->belongsTo('App\Supplier', 'material_SUPPLIER');
     }
+    public function rolls(){
+        return $this->hasMany('App\Roll', 'roll_MATERIAL_ID');
+    }
 }

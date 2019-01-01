@@ -1,16 +1,14 @@
 @extends('layouts.app')
-
 @section('content')
+@include('includes.messages')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-    <div class="col-md-12">
+    <div class="col-md-10">
     <h2>Dostawcy:</h2>
-    @include('includes.messages')
     @if (count($suppliers) > 0)
         <div class="table-responsive">
             <table class="table table-striped table-sm">      
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Nazwa</th>
                         <th>Adres</th>
                         <th>Telefon</th>
@@ -24,7 +22,6 @@
                 <tbody>
                 @foreach ($suppliers as $supplier)
                     <tr>
-                        <td>{{$supplier->supplier_ID}}</td>
                         <td><a href="/suppliers/{{$supplier->supplier_ID}}">{{$supplier->supplier_NAME}}</td>
                         <td>{{$supplier->supplier_ADDRESS}}</td>
                         <td>{{$supplier->supplier_PHONE}}</td>

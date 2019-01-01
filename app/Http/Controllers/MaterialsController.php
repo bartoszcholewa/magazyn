@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use Session;
 use App\Material;
 use App\Supplier;
 
@@ -26,6 +28,7 @@ class MaterialsController extends Controller
     public function index()
     {
         $materials = Material::all();
+        Session::put('requestReferrer', URL::current());
         return view('materials.index')->with('materials', $materials);
     }
 
@@ -69,7 +72,8 @@ class MaterialsController extends Controller
         $material->material_EDITOR_ID = auth()->user()->id;
         $material->save();
 
-        return redirect('/materials')->with('success', 'Dodano nowy materiał');
+        //return redirect('/materials')->with('success', 'Dodano nowy materiał');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Dodano nowy materiał: <b>'.$request->input('material_NAME').'</b>');
     }
 
     /**
@@ -94,7 +98,6 @@ class MaterialsController extends Controller
     {
         $material = Material::find($id);
         $suppliers = Supplier::all()->pluck('supplier_NAME', 'supplier_ID')->toArray();
-        /*return view('materials.edit')->with('material', $material, 'suppliers', $suppliers);*/
         return view('materials.edit', compact('material', 'suppliers'));
     }
 
@@ -128,7 +131,8 @@ class MaterialsController extends Controller
         $material->save();
 
         //return redirect('/materials')->with('success', 'Zaktualizowano materiał');
-        return redirect()->route('materials.show', $material->material_ID)->with('success', 'Zaktualizowano materiał');
+        //return redirect()->route('materials.show', $material->material_ID)->with('success', 'Zaktualizowano materiał');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Zaktualizowano materiał: <b>'.$request->input('material_NAME').'</b>');
     }
 
     /**
@@ -141,6 +145,15 @@ class MaterialsController extends Controller
     {
         $material = Material::find($id);
         $material->delete();
-        return redirect('/materials')->with('success', 'Usunięto materiał');
+        //return redirect('/materials')->with('success', 'Usunięto materiał');
+        return redirect(Session::get('requestReferrer'))->with('success', 'Usunięto materiał <b>'.$material->material_NAME.'</b>');
+    }
+
+    public function raport($id)
+    {
+        $material = Material::find($id);
+        Session::put('requestReferrer', URL::current());
+        return view('materials.raport')->with('material', $material);
+        
     }
 }
