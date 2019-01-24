@@ -3,7 +3,7 @@
 @include('includes.messages')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <div class="col-md-10">
-    <h2>Dostawcy:</h2>
+    <h2 style="display: inline-block">Dostawcy: &nbsp;<a class="btn btn-primary btn-sm" href="/suppliers/create"><i class="fas fa-plus-circle"></i>  Dostawcę</a></h2>
     @if (count($suppliers) > 0)
         <div class="table-responsive">
             <table class="table table-striped table-sm">      
@@ -38,7 +38,6 @@
         @else
             <p>Brak dodanych dostawców</p>
         @endif
-    <a class="btn btn-primary" href="/suppliers/create" role="button">Nowy dostawca</a>
     </div>
 </main>
 @endsection

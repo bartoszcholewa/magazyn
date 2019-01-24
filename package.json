@@ -22,6 +22,11 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
-        "vue-template-compiler": "^2.5.21"
+        "vue-template-compiler": "^2.5.21",
+        "vuedraggable": "^2.17.0"
+    },
+    "dependencies": {
+        "moment": "^2.23.0",
+        "vue-loader": "^15.4.2"
     }
 }

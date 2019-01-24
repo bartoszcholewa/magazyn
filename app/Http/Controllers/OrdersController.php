@@ -29,7 +29,8 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        //$orders = Order::all();
+        $orders = Order::orderBy('order_NAME', 'desc')->paginate(20);
         Session::put('requestReferrer', URL::current());
         return view('orders.index')->with('orders', $orders);
     }
@@ -79,6 +80,9 @@ class OrdersController extends Controller
         $order->order_STATUS = $request->input('order_STATUS');
         $order->order_CREATOR_ID = auth()->user()->id;
         $order->order_EDITOR_ID = auth()->user()->id;
+        $order->order_pp_ID = 0;
+        $order->order_pp_ORDER = 0;
+        $order->order_pp_PEDIOD = 1;
         $order->save();
 
         //return redirect()->back()->with('success', 'Dodano nowe zlecenie');

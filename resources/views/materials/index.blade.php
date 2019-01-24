@@ -5,8 +5,7 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
     <div class="col-md-8">
-    <h2>Materiały:</h2>
-    
+    <h2 style="display: inline-block">Materiały: &nbsp;<a class="btn btn-primary btn-sm" href="/materials/create"><i class="fas fa-plus-circle"></i>  Materiał</a></h2>
     @if (count($materials) > 0)
         <div class="table-responsive">
             <table class="table table-striped table-sm">      
@@ -35,7 +34,6 @@
         @else
             <p>Brak dodanych materiałów</p>
         @endif
-    <a class="btn btn-primary" href="/materials/create" role="button">Nowy materiał</a>
     </div>
 </main>
 @endsection

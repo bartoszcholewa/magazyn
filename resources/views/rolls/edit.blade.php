@@ -56,7 +56,7 @@
 
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="roll_DEFECTED" value="1" name="roll_DEFECTED" {{($roll->roll_DEFECTED == 1) ? checked : ''}}>
+                        <input type="checkbox" class="custom-control-input" id="roll_DEFECTED" value="1" name="roll_DEFECTED" @if($roll->roll_DEFECTED == 1) checked @endif >
                         <label class="custom-control-label" for="roll_DEFECTED">Uszkodzona</label>
                     </div>
                 </div>

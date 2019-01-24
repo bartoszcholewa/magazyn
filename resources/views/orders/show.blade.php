@@ -31,7 +31,12 @@
             Data: {{$order->order_DATE}}<br>
             Klient: {{$order->order_CLIENT_NAME}} {{$order->order_CLIENT_SURNAME}}<br>
             Opis: {{$order->order_DESCRIPTION}}<br>
-            Status: {{$order->order_STATUS}}</p>
+            Status:
+                @if($order->order_STATUS == 0) Nowe @endif
+                @if($order->order_STATUS == 1) Wydrukowane @endif
+                @if($order->order_STATUS == 2) Wysłane @endif
+                @if($order->order_STATUS == 3) Reklamacja @endif
+            </p>
             <hr>
             <p>Przewidziana długość: {{$order->order_EXPECTED_L}}<br>
             Bezpieczna długość: {{$order->order_SAFE_L}}<br>

@@ -28,10 +28,14 @@
         <div class="col-sm-6">
             <p>Materiał: {{$roll->material->material_NAME}}<br>
             Data: {{$roll->roll_DATE}}<br>
-            Status: {{$roll->roll_STATUS}}<br>
+            Status:
+            @if($roll->roll_STATUS == 0) Nowa @endif
+            @if($roll->roll_STATUS == 1) W użyciu @endif
+            @if($roll->roll_STATUS == 2) Resztka @endif
+            @if($roll->roll_STATUS == 3) Zakończona @endif<br>
             Opis: {{$roll->roll_DESCRIPTION}}<br>
             Długość początkowa: {{$roll->roll_LENGTH}}m<br>
-            Uszkodzona: {{$roll->roll_DEFECTED}}<br>
+            Uszkodzona: @if($roll->roll_DEFECTED == 0) Nie @else Tak @endif<br>
             Faktura: <a href="/storage/faktury/{{$roll->roll_INVOICE_FILE}}">{{$roll->roll_INVOICE_NR}}</a><br>
             Status faktury: {{$roll->roll_INVOICE_STATUS}}</p>
             

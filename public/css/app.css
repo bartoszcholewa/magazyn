@@ -16241,6 +16241,13 @@ body {
   padding-left: 0.7rem;
 }
 
+.card-footer {
+  padding-top: 0.3rem;
+  padding-right: 0.7rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.7rem;
+}
+
 .card-body {
   flex: 1 1 auto;
   padding: 0.5rem;
@@ -16267,6 +16274,13 @@ p {
 }
 
 .container-fluid .raport {
+  overflow-x: auto;
+  overflow-y: auto;
+  min-height: 600px;
+  max-height: 600px;
+}
+
+.container-fluid .niezaplanowane {
   overflow-x: auto;
   overflow-y: auto;
   min-height: 600px;

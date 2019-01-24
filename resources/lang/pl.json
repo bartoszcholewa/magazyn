@@ -1,0 +1,24 @@
+
+{   
+    "E-Mail Address" :          "Adres email",
+    "Password" :                "Hasło",
+    "Remember Me" :             "Zapamiętaj mnie",
+    "Login" :                   "Logowanie",
+    "Forgot Your Password?" :   "Zapomniałeś hasła?",
+    "Logout" :                  "Wyloguj",
+    "Register" :                "Zarejestruj",
+    "Dashboard" :               "Panel Główny",
+    "Suppliers" :               "Dostawcy",
+    "Materials" :               "Materiały",
+    "Rolls" :                   "Rolki",
+    "Orders" :                  "Zlecenia",
+    "Work Plan" :               "Plan Pracy",
+    "Artists Plan" :            "Plan Plastyków",
+    "Graphics Plan" :           "Plan Grafików",
+    "Stock" :                   "Magazyn",
+    "Admin Panel" :             "Panel Administacyjny",
+    "Users" :                   "Użytkownicy",
+    "Language" :                "Język",
+    "English" :                 "Angielski",
+    "Polish" :                  "Polski"
+}

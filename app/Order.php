@@ -8,6 +8,11 @@ class Order extends Model
 {
     public $primaryKey = 'order_ID';
 
+    protected $fillable = ['order_pp_ORDER', 'order_pp_ID'];
+
+
+
+
     public function creator(){
         return $this->belongsTo('App\User', 'order_CREATOR_ID');
     }
@@ -16,5 +21,10 @@ class Order extends Model
     }
     public function roll(){
         return $this->belongsTo('App\Roll', 'order_ROLL_ID');
+    }
+    public function scopeWithoutTimestamps()
+    {
+        $this->timestamps = false;
+        return $this;
     }
 }

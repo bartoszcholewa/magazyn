@@ -10,11 +10,11 @@
                 <li class="nav-item text-nowrap">
                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
-            @if (Route::has('register'))
+            {{-- @if (Route::has('register'))
                 <li class="nav-item text-nowrap">
                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                 </li>
-            @endif
+            @endif --}}
             @else
 
             <li class="nav-item text-nowrap">
@@ -30,7 +30,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                     </form>
-             </li>
+            </li>
             @endguest
             </ul>
             
@@ -44,71 +44,97 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::segment(1) === 'dashboard' ? 'active' : null }}" href="/dashboard">
+                                <a class="nav-link {{ Request::is('dashboard') ? 'active' : null }}" href="/dashboard">
                                     <i class="fas fa-home"></i>
-                                    Dashboard <span class="sr-only">(current)</span>
+                                    {{ __('Dashboard') }} <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::segment(1) === 'suppliers' ? 'active' : null }}" href="/suppliers">
+                                <a class="nav-link {{ Request::is('suppliers') ? 'active' : null }}" href="/suppliers">
                                     <i class="fas fa-truck"></i>
-                                    Dostawcy
+                                    {{ __('Suppliers') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::segment(1) === 'materials' ? 'active' : null }}" href="/materials">
+                                <a class="nav-link {{ Request::is('materials') ? 'active' : null }}" href="/materials">
                                     <i class="fas fa-file"></i>
-                                    Materiały
+                                    {{ __('Materials') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::segment(1) === 'rolls' ? 'active' : null }}" href="/rolls">
+                                <a class="nav-link {{ Request::is('rolls') ? 'active' : null }}" href="/rolls">
                                     <i class="far fa-dot-circle"></i>
-                                    Rolki
+                                    {{ __('Rolls') }}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ Request::segment(1) === 'orders' ? 'active' : null }}" href="/orders">
+                                <a class="nav-link {{ Request::is('orders') ? 'active' : null }}" href="/orders">
                                     <i class="fas fa-shopping-cart"></i>
-                                    Zlecenia
+                                    {{ __('Orders') }}
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-user-tie"></i>
-                                    Customers
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="far fa-chart-bar"></i>
-                                    Reports
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                        <i class="fas fa-layer-group"></i>
-                                    Integrations
-                                </a>
-                            </li>
+                            
                         </ul>
-
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Raporty:</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                            <i class="fas fa-plus-circle"></i>
-                        </a>
+                        <span>{{ __('Work Plan') }}:</span>
                     </h6>
-
+                    <ul class="nav flex-column mb-2">
+                        @if(Auth::id() == 2 || Auth::id() == 1 )
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('planplastykow/edycja') ? 'active' : null }}" href="/planplastykow/edycja">
+                                <i class="far fa-calendar-alt"></i>
+                                {{ __('Artists Plan') }}
+                            </a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('planplastykow') ? 'active' : null }}" href="/planplastykow">
+                                <i class="far fa-calendar-alt"></i>
+                                {{ __('Artists Plan') }}
+                            </a>
+                        </li>
+                        @endif
+                    </ul>
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>{{ __('Stock') }}:</span>
+                    </h6>
                     <ul class="nav flex-column mb-2">
                         @foreach (Navmat::all() as $material)
                         <li class="nav-item">
-                            <a class="nav-link" href="/materials/{{$material->material_ID}}/raport">
+                            <a class="nav-link {{ Request::is('materials/'.$material->material_ID.'/raport') ? 'active' : null }}" href="/materials/{{$material->material_ID}}/raport">
                                 <i class="far fa-dot-circle"></i>
                                 {{$material->material_NAME}}
                             </a>
                         </li>
                         @endforeach
+                    </ul>
+                    @if(Auth::id() == 1)
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>{{ __('Admin Panel') }}:</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users">
+                                <i class="fas fa-user-cog"></i>
+                                {{ __('Users') }}
+                            </a>
+                        </li>
+                    </ul>
+                    @endif
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>{{ __('Language') }}:</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/lang/en">
+                                {{ __('English') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/lang/pl">
+                                {{ __('Polish') }}
+                            </a>
+                        </li>
                     </ul>
                     </div>
                 </nav>
