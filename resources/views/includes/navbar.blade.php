@@ -125,16 +125,17 @@
                         <span>{{ __('Language') }}:</span>
                     </h6>
                     <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/lang/en">
-                                {{ __('English') }}
+                        
+                            <div class="row ml-2">
+
+                            <a href="/lang/en" class="m-1">
+                                <img src="/storage/ico/en.png">
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/lang/pl">
-                                {{ __('Polish') }}
+                            <a href="/lang/pl" class="m-1">
+                                <img src="/storage/ico/pl.png">
                             </a>
-                        </li>
+                            </div>
+
                     </ul>
                     </div>
                 </nav>

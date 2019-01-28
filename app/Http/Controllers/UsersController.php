@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Session;
 
@@ -39,8 +40,10 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('users.show')->with('user', $user);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -50,7 +53,14 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('users.edit')->with('user', $user);
+    }
+
+    public function changepassword($id)
+    {
+        $user = User::find($id);
+        return view('users.changepassword')->with('user', $user);
     }
 
     /**
@@ -60,9 +70,18 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updatepassword(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'password' => 'required',
+            'password_confirm' => 'required|same:password'
+        ]);
+        $user = User::find($id);
+        $password_validation = Hash::make($request->input('password_confirm'));
+        $user->password = $password_validation;
+        $user->save();
+
+        return redirect(Session::get('requestReferrer'))->with('success', 'Poprawnie zmieniono hasło dla: <b>'.$user->name.'</b>');
     }
 
     /**

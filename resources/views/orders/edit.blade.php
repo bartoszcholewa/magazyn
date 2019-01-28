@@ -22,20 +22,9 @@
                     </div>
 
                     <div class="col-sm no-gutter">
-                        {{Form::label('order_DATE', 'Data zlecenia:')}}
+                        {{Form::label('order_DATE', 'Data wejścia:')}}
                         @if($errors->has("order_DATE")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
                         {{Form::date('order_DATE', $order->order_DATE, ['class' => $invalid])}}
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                {{Form::label('order_ROLL_ID', 'Rolka:')}}
-                <div class="input-group mb-12">
-                    @if($errors->has("order_ROLL_ID")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
-                    {{Form::select('order_ROLL_ID', $rolls, $order->order_ROLL_ID, ['class' => $invalid, 'placeholder' => 'Wybierz rolkę...'])}}
-                    <div class="input-group-append">
-                        <a class="btn btn-outline-primary" href="/rolls/create" role="button">Dodaj</a>
                     </div>
                 </div>
             </div>
@@ -51,6 +40,33 @@
                         {{Form::label('order_CLIENT_SURNAME', 'Nazwisko:')}}
                         @if($errors->has("order_CLIENT_SURNAME")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
                         {{Form::text('order_CLIENT_SURNAME', $order->order_CLIENT_SURNAME, ['class' => $invalid, 'placeholder' => 'np. Kowalski'])}}
+                    </div>
+                </div>
+            </div>
+
+            {{-- <div class="form-group">
+                {{Form::label('order_ROLL_ID', 'Rolka:')}}
+                <div class="input-group mb-12">
+                    @if($errors->has("order_ROLL_ID")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                    {{Form::select('order_ROLL_ID', $rolls, $order->order_ROLL_ID, ['class' => $invalid, 'placeholder' => 'Wybierz rolkę...'])}}
+                    <div class="input-group-append">
+                        <a class="btn btn-outline-primary" href="/rolls/create" role="button">Dodaj</a>
+                    </div>
+                </div>
+            </div> --}}
+
+            <div class="form-group no-gutter">
+                <div class="row">
+                    <div class="col-sm no-gutter">
+                        {{Form::label('order_MATERIAL_ID', 'Materiał:')}}
+                        @if($errors->has("order_MATERIAL_ID")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                        {{Form::select('order_MATERIAL_ID', $materials, $order->order_MATERIAL_ID, ['class' => $invalid, 'placeholder' => 'Wybierz materiał...'])}}
+
+                    </div>
+                    <div class="col-sm no-gutter">
+                        {{Form::label('order_ROLL_ID', 'Rolka:')}}
+                        @if($errors->has("order_ROLL_ID")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                        {{Form::select('order_ROLL_ID', $rolls, $order->order_ROLL_ID, ['class' => $invalid, 'placeholder' => 'Wybierz rolkę...'])}}
                     </div>
                 </div>
             </div>

@@ -33,3 +33,38 @@ Vue.component('niezaplanowane', require('./components/Niezaplanowane.vue').defau
 const app = new Vue({
     el: '#app'
 });
+
+$(document).ready(function() {
+
+    $('select[name="order_MATERIAL_ID"]').on('change', function(){
+        var orderMaterialId = $(this).val();
+        if(orderMaterialId) {
+            $.ajax({
+                url: '/rolls/get/'+orderMaterialId,
+                type:"GET",
+                dataType:"json",
+                beforeSend: function(){
+                    $('#loader').css("visibility", "visible");
+                },
+
+                success:function(data) {
+
+                    $('select[name="order_ROLL_ID"]').empty();
+
+                    $.each(data, function(key, value){
+
+                        $('select[name="order_ROLL_ID"]').append('<option value="'+ key +'">' + value + '</option>');
+
+                    });
+                },
+                complete: function(){
+                    $('#loader').css("visibility", "hidden");
+                }
+            });
+        } else {
+            $('select[name="order_ROLL_ID"]').empty();
+        }
+
+    });
+
+});

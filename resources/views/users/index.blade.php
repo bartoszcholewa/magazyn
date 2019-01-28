@@ -4,7 +4,7 @@
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-    <div class="col-md-8">
+    <div class="col-md-12">
     <h2 style="display: inline-block">Użytkownicy: &nbsp;<a class="btn btn-primary btn-sm" href="/register"><i class="fas fa-plus-circle"></i>  Użytkownika</a></h2>
         <div class="table-responsive">
             <table class="table table-striped table-sm">      
@@ -16,7 +16,7 @@
                         <th>Zweryfikowany</th>
                         <th>Utworzony</th>
                         <th>Edytowany</th>
-                        <th>Usuń<th>
+                        <th>Edycja<th>
                     </tr>
                 </thead>     
                 <tbody>
@@ -29,10 +29,17 @@
                         <td>{{$user->created_at}}</td>
                         <td>{{$user->updated_at}}</td>
                         <td>
-                            {!!Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'POST'])!!}
-                            {{Form::hidden('_method', 'DELETE')}}
-                            {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Are you sure?")'])}}
-                            {!!Form::close()!!}
+                            @if($user->id == 1)
+                                <a class="btn btn-primary btn-sm" href="/users/{{ $user->id }}/edit" role="button">Edytuj</a>
+                                <a class="btn btn-secondary btn-sm" href="/users/{{ $user->id }}/changepassword" role="button">Zmień hasło</a>
+                            @else
+                                {!!Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'POST'])!!}
+                                {{Form::hidden('_method', 'DELETE')}}
+                                <a class="btn btn-primary btn-sm" href="/users/{{ $user->id }}/edit" role="button">Edytuj</a>
+                                <a class="btn btn-secondary btn-sm" href="/users/{{ $user->id }}/changepassword" role="button">Zmień hasło</a>
+                                {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Are you sure?")'])}}
+                                {!!Form::close()!!}
+                            @endif
                         </td>
                     </tr>
                 @endforeach

@@ -77,7 +77,7 @@
                             
                         @endforeach
                     </table>  
-                    <a href="/orders/create?roll={{$roll->roll_ID}}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i>  Zlecenie</a>
+                    <a href="/orders/create?material={{$material->material_ID}}&roll={{$roll->roll_ID}}" class="btn btn-success btn-sm"><i class="fas fa-plus-circle"></i>  Zlecenie</a>
                     </div>
                     
                     </div>

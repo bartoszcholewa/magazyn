@@ -20,4 +20,7 @@ class Material extends Model
     public function rolls(){
         return $this->hasMany('App\Roll', 'roll_MATERIAL_ID');
     }
+    public function orders(){
+        return $this->hasMany('App\Order', 'order_MATERIAL_ID');
+    }
 }

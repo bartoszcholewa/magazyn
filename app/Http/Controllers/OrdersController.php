@@ -42,8 +42,18 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $rolls = Roll::all()->pluck('roll_NAME', 'roll_ID')->toArray();;
-        return view('orders.create')->with('rolls', $rolls);
+        $rolls = Roll::all()->pluck('roll_NAME', 'roll_ID')->toArray();
+        $materials = Material::all()->pluck('material_NAME', 'material_ID')->toArray();
+        return view('orders.create')->with(['rolls' => $rolls, 'materials' => $materials]);
+    }
+
+    /**
+     * Laravel Dynamic Dependent Dropdown
+     */
+    public function getRolls($id)
+    {
+        $rolls = Roll::where('roll_MATERIAL_ID', $id)->pluck('roll_NAME', 'roll_ID');
+        return json_encode($rolls);
     }
 
     /**
@@ -56,23 +66,28 @@ class OrdersController extends Controller
     {
         
         $this->validate($request, [
-            'order_ROLL_ID' => 'required',
             'order_NAME' => 'required',
             'order_DATE' => 'required',
+            'order_CUTDATE' => 'nullable',
             'order_CLIENT_NAME' => 'required',
             'order_CLIENT_SURNAME' => 'required',
+            'order_MATERIAL_ID' => 'required',
+            'order_ROLL_ID' => 'required',
             'order_EXPECTED_L' => 'required',
             'order_SAFE_L' => 'required',
             'order_ACTUAR_L' => 'nullable',
             'order_DESCRIPTION' => 'nullable',
             'order_STATUS' => 'nullable',
+            'order_pp_PEDIOD' => 'nullable'
         ]);
         $order = new Order;
-        $order->order_ROLL_ID = $request->input('order_ROLL_ID');
         $order->order_NAME = $request->input('order_NAME');
         $order->order_DATE = $request->input('order_DATE');
+        $order->order_CUTDATE = $request->input('order_CUTDATE');
         $order->order_CLIENT_NAME = $request->input('order_CLIENT_NAME');
         $order->order_CLIENT_SURNAME = $request->input('order_CLIENT_SURNAME');
+        $order->order_MATERIAL_ID = $request->input('order_MATERIAL_ID');
+        $order->order_ROLL_ID = $request->input('order_ROLL_ID');
         $order->order_EXPECTED_L = $request->input('order_EXPECTED_L');
         $order->order_SAFE_L = $request->input('order_SAFE_L');
         $order->order_ACTUAR_L = $request->input('order_ACTUAR_L');
@@ -82,7 +97,7 @@ class OrdersController extends Controller
         $order->order_EDITOR_ID = auth()->user()->id;
         $order->order_pp_ID = 0;
         $order->order_pp_ORDER = 0;
-        $order->order_pp_PEDIOD = 1;
+        $order->order_pp_PEDIOD = $request->input('order_pp_PEDIOD');
         $order->save();
 
         //return redirect()->back()->with('success', 'Dodano nowe zlecenie');
@@ -111,7 +126,8 @@ class OrdersController extends Controller
     {
         $order = Order::find($id);
         $rolls = Roll::all()->pluck('roll_NAME', 'roll_ID')->toArray();
-        return view('orders.edit', compact('order', 'rolls'));
+        $materials = Material::all()->pluck('material_NAME', 'material_ID')->toArray();
+        return view('orders.edit', compact('order', 'rolls', 'materials'));
     }
 
     /**
@@ -124,21 +140,26 @@ class OrdersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'order_ROLL_ID' => 'required',
             'order_NAME' => 'required',
             'order_DATE' => 'required',
+            'order_CUTDATE' => 'nullable',
             'order_CLIENT_NAME' => 'required',
             'order_CLIENT_SURNAME' => 'required',
+            'order_MATERIAL_ID' => 'required',
+            'order_ROLL_ID' => 'required',
             'order_EXPECTED_L' => 'required',
             'order_SAFE_L' => 'required',
             'order_ACTUAR_L' => 'nullable',
             'order_DESCRIPTION' => 'nullable',
             'order_STATUS' => 'nullable',
+            'order_pp_PEDIOD' => 'nullable'
         ]);
         $order = Order::find($id);
+        $order->order_MATERIAL_ID = $request->input('order_MATERIAL_ID');
         $order->order_ROLL_ID = $request->input('order_ROLL_ID');
         $order->order_NAME = $request->input('order_NAME');
         $order->order_DATE = $request->input('order_DATE');
+        $order->order_CUTDATE = $request->input('order_CUTDATE');
         $order->order_CLIENT_NAME = $request->input('order_CLIENT_NAME');
         $order->order_CLIENT_SURNAME = $request->input('order_CLIENT_SURNAME');
         $order->order_EXPECTED_L = $request->input('order_EXPECTED_L');
@@ -147,6 +168,7 @@ class OrdersController extends Controller
         $order->order_DESCRIPTION = $request->input('order_DESCRIPTION');
         $order->order_STATUS = $request->input('order_STATUS');
         $order->order_EDITOR_ID = auth()->user()->id;
+        $order->order_pp_PEDIOD = $request->input('order_pp_PEDIOD');
         $order->save();
 
         //return redirect()->route('orders.show', $order->order_ID)->with('success', 'Zaktualizowano zlecenie');

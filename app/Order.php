@@ -22,6 +22,9 @@ class Order extends Model
     public function roll(){
         return $this->belongsTo('App\Roll', 'order_ROLL_ID');
     }
+    public function material(){
+        return $this->belongsTo('App\Material', 'order_MATERIAL_ID');
+    }
     public function scopeWithoutTimestamps()
     {
         $this->timestamps = false;

@@ -10,13 +10,13 @@
                     <thead>
                         <tr>
                             <th>Nazwa zlecenia</th>
-                            <th>Rolka</th>
                             <th>Klient</th>
-                            <th>Opis</th>
+                            <th>Materiał</th>
+                            <th>Rolka</th>
                             <th>Status</th>
-                            <th>Przewidziana długość</th>
-                            <th>Bezpieczna długość</th>
-                            <th>Faktyczna długość</th>
+                            <th><div title="Przewidziana długość">P.D.</div></th>
+                            <th><div title="Bezpieczna długość">B.D.</div></th>
+                            <th><div title="Faktyczna długość">F.D.</div></th>
                         </tr>
                     </thead>     
                     <tbody>
@@ -24,9 +24,9 @@
                         @if($order->order_NAME == "0") @else
                             <tr>
                                 <td><a href="/orders/{{$order->order_ID}}">PW-{{$order->order_NAME}}</td>
-                                <td>{{$order->roll->roll_NAME}}</td>
                                 <td>{{$order->order_CLIENT_NAME}} {{$order->order_CLIENT_SURNAME}}</td>
-                                <td>{{$order->order_DESCRIPTION}}</td>
+                                <td>{{$order->material->material_NAME}}</td>
+                                <td>{{$order->roll->roll_NAME}}</td>
                                 <td>
                                     @if($order->order_STATUS == 0) Nowe @endif
                                     @if($order->order_STATUS == 1) Wydrukowane @endif
