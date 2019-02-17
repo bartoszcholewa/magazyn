@@ -14,7 +14,7 @@
                     <a class="btn btn-outline-primary btn-sm" target="_blank" href="{{$supplier->supplier_URL}}" role="button">Strona dostawcy</a>
                     @if(!Auth::guest())
                         <a class="btn btn-primary btn-sm" href="/suppliers/{{$supplier->supplier_ID}}/edit" role="button">Edytuj</a>
-                        {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Are you sure?")'])}}
+                        {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Czy napewno chcesz usunąć?")'])}}
                         {!!Form::close()!!}
                     @endif
                 </div>

@@ -170,3 +170,12 @@ label {
 .form-group {
   margin-bottom: 0.5rem;
 }
+
+.card-img-top {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card-img-top:hover {opacity: 0.7;}
+.wydrukowane {margin-left: 0;}
+.print {line-height: 1;}

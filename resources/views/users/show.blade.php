@@ -17,7 +17,7 @@
                 <button onclick="goBack()" type="button" class="btn btn-outline-primary btn-sm">Wróć</button>
                 @if(!Auth::guest())
                     <a class="btn btn-primary btn-sm" href="/materials/{{$user->id}}/edit" role="button">Edytuj</a>
-                    {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Are you sure?")'])}}
+                    {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Czy napewno chcesz usunąć?")'])}}
                     {!!Form::close()!!}
                 @endif
             </div>

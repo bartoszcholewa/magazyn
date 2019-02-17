@@ -50,11 +50,13 @@ $('select[name="order_MATERIAL_ID"]').on('change', function(){
                 $.each(data, function(key, value){
 
                     $('select[name="order_ROLL_ID"]').append('<option value="'+ key +'">' + value + '</option>');
-
                 });
+                
             },
             complete: function(){
                 $('#loader').css("visibility", "hidden");
+                
+                
             }
         });
     } else {
@@ -65,4 +67,17 @@ $('select[name="order_MATERIAL_ID"]').on('change', function(){
 
 });
 </script>
+<script>
+function centerModal() {
+    $(this).css('display', 'block');
+    var $dialog = $(this).find(".modal-dialog");
+    var offset = ($(window).height() - $dialog.height()) / 2;
+    // Center modal vertically in window
+    $dialog.css("margin-top", offset);
+}
 
+$('.modal').on('show.bs.modal', centerModal);
+$(window).on("resize", function () {
+    $('.modal:visible').each(centerModal);
+});
+</script>

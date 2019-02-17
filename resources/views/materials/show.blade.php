@@ -20,7 +20,7 @@
                             @if(!Auth::guest())
                                 <a class="btn btn-primary btn-sm" href="/materials/{{$material->material_ID}}/edit" role="button">Edytuj</a>
                                 <a class="btn btn-primary btn-sm" href="/materials/{{$material->material_ID}}/raport" role="button">Raport</a>
-                                {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Are you sure?")'])}}
+                                {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Czy napewno chcesz usunąć?")'])}}
                                 {!!Form::close()!!}
                             @endif
                         </div>

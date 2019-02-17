@@ -20,5 +20,9 @@
     "Users" :                   "Użytkownicy",
     "Language" :                "Język",
     "English" :                 "Angielski",
-    "Polish" :                  "Polski"
+    "Polish" :                  "Polski",
+    "Incorrect username or password." : "Niepoprawny login lub hasło.",
+    "Order with that number already exist." : "Zlecenie o takim numerze już istnieje.",
+    "Field required." : "Pole wymagane.",
+    "Invalid URL format." : "Niepoprawny format URL"
 }

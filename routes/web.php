@@ -24,6 +24,7 @@ Route::get('/dashboard', 'DashboardController@index');
 Route::resource('suppliers', 'SuppliersController');
 Route::resource('rolls', 'RollsController');
 Route::get('/rolls/get/{id}', 'OrdersController@getRolls');
+Route::patch('/orders/{id}', 'OrdersController@wydrukowane');
 Route::resource('orders', 'OrdersController');
 Route::get('/planplastykow', 'PlanPlastykowController@podglad')->name('planplastykow.podglad');
 Route::get('/planplastykow/edycja', 'PlanPlastykowController@edycja')->name('planplastykow.edycja');

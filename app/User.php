@@ -59,6 +59,10 @@ class User extends Authenticatable
     public function orders_editor(){
         return $this->hasMany('App\Order', 'order_EDITOR_ID');
     }
+
+    public function operations(){
+        return $this->hasMany('App\Order', 'operation_USER_ID');
+    }
     
 
 }

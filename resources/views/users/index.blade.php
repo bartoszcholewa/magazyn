@@ -37,7 +37,7 @@
                                 {{Form::hidden('_method', 'DELETE')}}
                                 <a class="btn btn-primary btn-sm" href="/users/{{ $user->id }}/edit" role="button">Edytuj</a>
                                 <a class="btn btn-secondary btn-sm" href="/users/{{ $user->id }}/changepassword" role="button">Zmień hasło</a>
-                                {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Are you sure?")'])}}
+                                {{Form::submit('Usuń', ['class' => 'btn btn-danger btn-sm', 'onclick' => 'return confirm("Czy napewno chcesz usunąć?")'])}}
                                 {!!Form::close()!!}
                             @endif
                         </td>

@@ -55611,7 +55611,7 @@ var render = function() {
                 _c("div", { staticClass: "card-footer text-muted" }, [
                   _vm._v(
                     "\n                        Planowany czas: " +
-                      _vm._s(order.order_pp_PEDIOD) +
+                      _vm._s(order.order_pp_PERIOD) +
                       " godz\n                    "
                   )
                 ])
@@ -55732,7 +55732,7 @@ var render = function() {
                         _c("div", { staticClass: "card-footer text-muted" }, [
                           _vm._v(
                             "\n                            Planowany czas: " +
-                              _vm._s(order.order_pp_PEDIOD) +
+                              _vm._s(order.order_pp_PERIOD) +
                               " godz\n                        "
                           )
                         ])
@@ -67487,6 +67487,33 @@ Vue.component('niezaplanowane', __webpack_require__(/*! ./components/Niezaplanow
 
 var app = new Vue({
   el: '#app'
+});
+$(document).ready(function () {
+  $('select[name="order_MATERIAL_ID"]').on('change', function () {
+    var orderMaterialId = $(this).val();
+
+    if (orderMaterialId) {
+      $.ajax({
+        url: '/rolls/get/' + orderMaterialId,
+        type: "GET",
+        dataType: "json",
+        beforeSend: function beforeSend() {
+          $('#loader').css("visibility", "visible");
+        },
+        success: function success(data) {
+          $('select[name="order_ROLL_ID"]').empty();
+          $.each(data, function (key, value) {
+            $('select[name="order_ROLL_ID"]').append('<option value="' + key + '">' + value + '</option>');
+          });
+        },
+        complete: function complete() {
+          $('#loader').css("visibility", "hidden");
+        }
+      });
+    } else {
+      $('select[name="order_ROLL_ID"]').empty();
+    }
+  });
 });
 
 /***/ }),

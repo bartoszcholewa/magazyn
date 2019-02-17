@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Operation;
+use Illuminate\Support\Facades\URL;
+use Session;
 
 class PagesController extends Controller
 {
@@ -16,10 +19,9 @@ class PagesController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-        $data = array(
-            'title' => 'PROMAX | Magazyn',
-            'materials' => ['Latex', 'Winyl na Flizelinie', 'Flizelina', 'EasyStick', 'Canvas', 'Winyl Canvas']
-        );
-        return view('pages.index')->with($data);
+
+        $operations = Operation::orderBy('operation_DATETIME', 'desc')->paginate(5);
+        Session::put('requestReferrer', URL::current());
+        return view('pages.index')->with('operations', $operations);
     }
 }

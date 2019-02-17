@@ -9,7 +9,7 @@
                             <p class="card-text">{{order.order_CLIENT_NAME}} {{order.order_CLIENT_SURNAME}}</p>
                         </div>
                         <div class="card-footer text-muted">
-                            Planowany czas: {{order.order_pp_PEDIOD}} godz
+                            Planowany czas: {{order.order_pp_PERIOD}} godz
                         </div>
                     </div>
                 </draggable>   
