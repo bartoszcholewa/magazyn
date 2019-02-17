@@ -57,7 +57,7 @@
 
             <div class="row">
                 <div class="col col-lg-4">
-
+                    {{Form::hidden('_method', 'PUT')}}
                     <button onclick="goBack()" type="button" class="btn btn-outline-primary">Anuluj</button>
                     {{Form::submit('Edytuj', ['class'=>'btn btn-primary'])}}
 

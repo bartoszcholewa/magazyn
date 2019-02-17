@@ -5,10 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <h2>{{ __('Dashboard') }}</h2>
-            Aktualna praca nad: ORDERS!!!!<br>
-            [Zmień hasło]<br>
-            [Zmień język]<br>
-            jeśli admin [Zarejestruj użytkownika]
+            <p>Strona w budowie...</p>
 
         </div>
     </div>

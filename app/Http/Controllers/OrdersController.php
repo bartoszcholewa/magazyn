@@ -174,7 +174,14 @@ class OrdersController extends Controller
         $order->order_EDITOR_ID = auth()->user()->id;
         $order->save();
 
-        $op = "Dodano <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a>";
+        if($order->order_NAME == "0")
+        {
+            $op = "Dodano kablirację";
+        }
+        else {
+            $op = "Dodano <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a>";
+        }
+        
         Controller::operation($op);
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
@@ -310,7 +317,14 @@ class OrdersController extends Controller
         $order = Order::find($id);
         $order->delete();
 
-        $redirect_respond = "Usunięto PW-".$order->order_NAME;
+        if($order->order_NAME == "0")
+        {
+            $redirect_respond = "Usunięto kalibrację";
+        }
+        else {
+            $redirect_respond = "Usunięto PW-".$order->order_NAME;
+        }
+
         Controller::operation($redirect_respond);
        
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);

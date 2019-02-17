@@ -93,8 +93,10 @@ class SuppliersController extends Controller
         $supplier->supplier_LOGO = $fileNameToStore;
         $supplier->save();
 
-        //return redirect('/suppliers')->with('success', 'Dodano nowego dostawcę');
-        return redirect(Session::get('requestReferrer'))->with('success', 'Dodano nowego dostawcę: <b>'.$request->input('supplier_NAME').'</b>');
+        $redirect_respond = "Dodano <a href='suppliers/".$supplier->supplier_ID."'>".$supplier->supplier_NAME."</a>";
+        Controller::operation($redirect_respond);
+
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
     /**
@@ -106,7 +108,13 @@ class SuppliersController extends Controller
     public function show($id)
     {
         $supplier = Supplier::find($id);
-        return view('suppliers.show')->with('supplier', $supplier);
+        if(isset($supplier))
+        {
+            return view('suppliers.show')->with('supplier', $supplier);
+        }
+        else {
+            return redirect(Session::get('requestReferrer'))->with('error', 'Ten dostawca został usunięty.');
+        }
     }
 
     /**
@@ -173,9 +181,10 @@ class SuppliersController extends Controller
         }
         $supplier->save();
 
-        //return redirect('/suppliers')->with('success', 'Dodano nowego dostawcę');
-        //return redirect()->route('suppliers.show', $supplier->supplier_ID)->with('success', 'Zaktualizowano dostawcę');
-        return redirect(Session::get('requestReferrer'))->with('success', 'Zaktualizowano dostawcę: <b>'.$request->input('supplier_NAME').'</b>');
+        $redirect_respond = "Zaktualizowano <a href='suppliers/".$supplier->supplier_ID."'>".$supplier->supplier_NAME."</a>";
+        Controller::operation($redirect_respond);
+
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
     /**
@@ -197,7 +206,10 @@ class SuppliersController extends Controller
             Storage::delete('public/supplier_LOGO/'.$supplier->supplier_LOGO);
         }
         $supplier->delete();
-        //return redirect('/suppliers')->with('success', 'Usunięto dostawcę');
-        return redirect(Session::get('requestReferrer'))->with('success', 'Usunięto dostawcę: <b>'.$supplier->supplier_NAME.'</b>');
+
+        $redirect_respond = "Usunięto ".$supplier->supplier_NAME."</a>";
+        Controller::operation($redirect_respond);
+
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 }

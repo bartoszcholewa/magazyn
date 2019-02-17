@@ -91,9 +91,10 @@ class RollsController extends Controller
         $roll->roll_EDITOR = auth()->user()->id;
         $roll->save();
 
-        //return redirect('/rolls')->with('success', 'Dodano nową rolkę');
-        //return redirect(Session::get('requestReferrer'))->with('success', 'Dodano nową rolkę');
-        return redirect(Session::get('requestReferrer'))->with('success', 'Dodano nową rolkę: <b>'.$request->input('roll_NAME').'</b>');
+        $redirect_respond = "Dodano <a href='rolls/".$roll->roll_ID."'>".$roll->roll_NAME."</a>";
+        Controller::operation($redirect_respond);
+
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
     /**
@@ -105,7 +106,14 @@ class RollsController extends Controller
     public function show($id)
     {
         $roll = Roll::find($id);
-        return view('rolls.show')->with('roll', $roll);
+        if(isset($roll))
+        {
+            return view('rolls.show')->with('roll', $roll);
+        }
+        else {
+            return redirect(Session::get('requestReferrer'))->with('error', 'Ta rolka została usunięta.');
+        }
+        
     }
 
     /**
@@ -165,9 +173,10 @@ class RollsController extends Controller
         $roll->roll_EDITOR = auth()->user()->id;
         $roll->save();
 
-        //return redirect()->route('rolls.show', $roll->roll_ID)->with('success', 'Zaktualizowano rolkę');
-        //return redirect(Session::get('requestReferrer'))->with('success', 'Zaktualizowano rolkę');
-        return redirect(Session::get('requestReferrer'))->with('success', 'Zaktualizowano rolkę: <b>'.$request->input('roll_NAME').'</b>');
+        $redirect_respond = "Zaktualizowano <a href='rolls/".$roll->roll_ID."'>".$roll->roll_NAME."</a>";
+        Controller::operation($redirect_respond);
+
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
         
     }
 
@@ -181,8 +190,10 @@ class RollsController extends Controller
     {
         $roll = Roll::find($id);
         $roll->delete();
-        //return redirect('/rolls')->with('success', 'Usunięto rolkę');
-        //return redirect(Session::get('requestReferrerDelete'))->with('success', 'Usunięto rolkę');
-        return redirect(Session::get('requestReferrer'))->with('success', 'Usunięto rolkę: <b>'.$roll->roll_NAME.'</b>');
+
+        $redirect_respond = "Usunięto ".$roll->roll_NAME;
+        Controller::operation($redirect_respond);
+
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 }
