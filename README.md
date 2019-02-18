@@ -43,6 +43,6 @@ npm install
 
 php artisan key:generate
 
-#PHPMyAdmin
+# PHPMyAdmin
 
 Create "magazyn" table and import magazyn.sql there
