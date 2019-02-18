@@ -26,14 +26,23 @@ Laravel 5.7
 127.0.0.1       magazyn
 
 # Visual Studio Code
+
 [Ctrl + `] to open console
+
 cd C:/xampp/htdocs
+
 git clone https://github.com/bartoszcholewa/magazyn.git
+
 cd magazyn
+
 composer install
+
 npm install
+
 [rebuid .env file your own]
+
 php artisan key:generate
 
 #PHPMyAdmin
+
 Create "magazyn" table and import magazyn.sql there
