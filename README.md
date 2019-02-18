@@ -1,0 +1,39 @@
+# magazyn
+Laravel 5.7
+
+# Install Process:
+1. XAMPP
+2. GIT
+3. Node.js
+4. Composer
+5. VS Code
+
+# C:\xampp\apache\conf\extra\httpd-vhosts.conf
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs"
+    ServerName localhost
+</VirtualHost>
+
+<VirtualHost *:80>
+    DocumentRoot "C:/xampp/htdocs/magazyn/public"
+    ServerName magazyn
+</VirtualHost>
+
+# C:\Windows\System32\drivers\etc
+
+127.0.0.1       localhost
+
+127.0.0.1       magazyn
+
+# Visual Studio Code
+[Ctrl + `] to open console
+cd C:/xampp/htdocs
+git clone https://github.com/bartoszcholewa/magazyn.git
+cd magazyn
+composer install
+npm install
+[rebuid .env file your own]
+php artisan key:generate
+
+#PHPMyAdmin
+Create "magazyn" table and import magazyn.sql there
