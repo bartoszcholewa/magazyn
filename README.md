@@ -25,6 +25,9 @@ Laravel 5.7
 
 127.0.0.1       magazyn
 
+# C:\xampp\htdocs\magazyn\.env
+rebuild .env file
+
 # Visual Studio Code
 
 [Ctrl + `] to open console
@@ -39,9 +42,13 @@ composer install
 
 npm install
 
-[rebuid .env file your own]
+npm run dev
 
 php artisan key:generate
+
+php artisan config:clear
+
+php artisan config:cache
 
 # PHPMyAdmin
 
