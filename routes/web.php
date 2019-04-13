@@ -33,3 +33,4 @@ Route::patch('/planplastykow/{id}', 'PlanPlastykowController@updateNiezaplanowan
 Route::get('/users/{id}/changepassword', 'UsersController@changepassword')->name('users.changepassword');
 Route::put('/users/{id}/updatepassword', 'UsersController@updatepassword')->name('users.updatepassword');
 Route::resource('users', 'UsersController');
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

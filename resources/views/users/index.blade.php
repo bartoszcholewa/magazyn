@@ -5,7 +5,7 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
     <div class="col-md-12">
-    <h2 style="display: inline-block">Użytkownicy: &nbsp;<a class="btn btn-primary btn-sm" href="/register"><i class="fas fa-plus-circle"></i>  Użytkownika</a></h2>
+    <h2 style="display: inline-block">Użytkownicy: &nbsp;<a class="btn btn-primary btn-sm" href="/users/create"><i class="fas fa-plus-circle"></i>  Użytkownika</a></h2>
         <div class="table-responsive">
             <table class="table table-striped table-sm">      
                 <thead>
@@ -13,6 +13,7 @@
                         <th>ID</th>
                         <th>Nazwa</th>
                         <th>Email</th>
+                        <th>Typ</th>
                         <th>Zweryfikowany</th>
                         <th>Utworzony</th>
                         <th>Edytowany</th>
@@ -25,6 +26,7 @@
                         <td>{{$user->id}}</td>
                         <td><a href="users/{{$user->id}}">{{$user->name}}</a></td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->type}}</td>
                         <td>{{$user->email_verified_at}}</td>
                         <td>{{$user->created_at}}</td>
                         <td>{{$user->updated_at}}</td>

@@ -30,7 +30,7 @@ class PlanPlastykowController extends Controller
      */
     public function edycja()
     {
-        if(Auth::id() == 1 || Auth::id() == 2 ){
+        if(in_array(Auth::user()->type, array('admin', 'boss'))){
             $weekMap = [
                 1 => 'Poniedziałek',
                 2 => 'Wtorek',

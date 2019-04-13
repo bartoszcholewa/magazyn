@@ -20,10 +20,14 @@ class Order extends Model
         return $this->belongsTo('App\User', 'order_EDITOR_ID');
     }
     public function roll(){
-        return $this->belongsTo('App\Roll', 'order_ROLL_ID');
+        return $this->belongsTo('App\Roll', 'order_ROLL_ID')->withDefault([
+            'roll_NAME' => 'Brak'
+        ]);
     }
     public function material(){
-        return $this->belongsTo('App\Material', 'order_MATERIAL_ID');
+        return $this->belongsTo('App\Material', 'order_MATERIAL_ID')->withDefault([
+            'material_NAME' => 'Brak'
+        ]);
     }
     public function scopeWithoutTimestamps()
     {

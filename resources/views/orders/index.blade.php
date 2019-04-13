@@ -29,8 +29,10 @@
                                     @endif
                                 </td>
                                 <td>{{$order->order_CLIENT_NAME}} {{$order->order_CLIENT_SURNAME}}</td>
+                                {{-- <td>@if($order->order_MATERIAL_ID == NULL) Brak @else @if(!$order->material()->exists()) Usunięty @else {{$order->material->material_NAME}} @endif @endif</td>
+                                <td>@if($order->order_ROLL_ID == NULL) Brak @else @if(!$order->roll()->exists()) Usunięty @else {{$order->roll->roll_NAME}} @endif @endif</td> --}}
                                 <td>{{$order->material->material_NAME}}</td>
-                                <td>@if($order->order_ROLL_ID == NULL) Brak @else {{$order->roll->roll_NAME}} @endif</td>
+                                <td>{{$order->roll->roll_NAME}}</td>
                                 <td>@if($order->order_URL !== NULL) <a href="{{$order->order_URL}}" target="_blank"><i class="fas fa-external-link-alt"></i></a>@endif </td>
                                 <td>
                                     {{ $diff = Carbon\Carbon::parse($order->created_at)->diffForHumans(Carbon\Carbon::now(), true) }}

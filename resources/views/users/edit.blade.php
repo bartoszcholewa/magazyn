@@ -19,6 +19,11 @@
                 @if($errors->has("email")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
                 {{Form::text('email', $user->email, ['class' => $invalid])}}
             </div>
+
+            <div class="form-group">
+                {{Form::label('type', 'Typ użytkownika:')}}
+                {{Form::select('type', ['admin' => 'Admin', 'boss' => 'Boss', 'picturewall' => 'Picturewall', 'promax' => 'Promax'], $user->type, ['class' => "form-control"])}}
+            </div>
         </div>
     </div>
     <hr>

@@ -62,6 +62,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            {{Form::label('type', 'Typ użytkownika:', ['class' => 'col-md-4 col-form-label text-md-right'])}}
+                            <div class="col-md-6">
+                                {{Form::select('type', ['admin' => 'Admin', 'boss' => 'Boss', 'picturewall' => 'Picturewall', 'promax' => 'Promax'], 'promax', ['class' => "form-control"])}}
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Session;
+use App\Operation;
 
 class UsersController extends Controller
 {
@@ -44,7 +45,41 @@ class UsersController extends Controller
         return view('users.show')->with('user', $user);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('users.create');
+    }
 
+        /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required',
+            'password_confirm' => 'required|same:password'
+        ]);
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->type = $request->input('type');
+        $password_validation = Hash::make($request->input('password_confirm'));
+        $user->password = $password_validation;
+        $user->save();
+
+        $redirect_respond = "Dodano nowego użytkownika: <a href='users/".$user->id."'>".$user->name."</a>";
+        Controller::operation($redirect_respond);
+
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -55,6 +90,27 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         return view('users.edit')->with('user', $user);
+    }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->type = $request->input('type');
+        $user->save();
+
+        $redirect_respond = 'Zaktualizowano użytkownika <b>'.$user->name.'</b>';
+
+        Controller::operation($redirect_respond);
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
     public function changepassword($id)
@@ -81,7 +137,10 @@ class UsersController extends Controller
         $user->password = $password_validation;
         $user->save();
 
-        return redirect(Session::get('requestReferrer'))->with('success', 'Poprawnie zmieniono hasło dla: <b>'.$user->name.'</b>');
+        $redirect_respond = 'Zmieniono hasło użytkownika <b>'.$user->name.'</b>';
+
+        Controller::operation($redirect_respond);
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
     /**
@@ -94,7 +153,10 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        //return redirect('/materials')->with('success', 'Usunięto materiał');
-        return redirect(Session::get('requestReferrer'))->with('success', 'Usunięto użytkownika <b>'.$user->name.'</b>');
+
+        $redirect_respond = 'Usunięto użytkownika <b>'.$user->name.'</b>';
+
+        Controller::operation($redirect_respond);
+        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 }

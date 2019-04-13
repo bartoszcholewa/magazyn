@@ -2,7 +2,7 @@
 
         <!-- UPPER NAVBAR -->
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">PROMAX | Magazyn</a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">PROMAX | Magazyn <small>v.0.1.0</small></a>
 
             <!-- Authentication Links -->
             <ul class="nav px-3">
@@ -79,7 +79,7 @@
                         <span>{{ __('Work Plan') }}:</span>
                     </h6>
                     <ul class="nav flex-column mb-2">
-                        @if(Auth::id() == 2 || Auth::id() == 1 )
+                        @if(in_array(Auth::user()->type, array('admin', 'boss')))
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('planplastykow/edycja') ? 'active' : null }}" href="/planplastykow/edycja">
                                 <i class="far fa-calendar-alt"></i>
@@ -95,6 +95,8 @@
                         </li>
                         @endif
                     </ul>
+
+                    @if(in_array(Auth::user()->type, array('admin', 'boss', 'picturewall')))
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>{{ __('Stock') }}:</span>
                     </h6>
@@ -108,7 +110,8 @@
                         </li>
                         @endforeach
                     </ul>
-                    @if(Auth::id() == 1)
+                    @endif
+                    @if(Auth::user()->type == "admin")
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>{{ __('Admin Panel') }}:</span>
                     </h6>
@@ -117,6 +120,12 @@
                             <a class="nav-link" href="/users">
                                 <i class="fas fa-user-cog"></i>
                                 {{ __('Users') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logs">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                {{ __('Logs') }}
                             </a>
                         </li>
                     </ul>
