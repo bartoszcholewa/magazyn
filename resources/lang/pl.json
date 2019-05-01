@@ -21,9 +21,18 @@
     "Language" :                "Język",
     "English" :                 "Angielski",
     "Polish" :                  "Polski",
-    "Incorrect username or password." : "Niepoprawny login lub hasło.",
-    "Order with that number already exist." : "Zlecenie o takim numerze już istnieje.",
-    "Field required." : "Pole wymagane.",
-    "Invalid URL format." : "Niepoprawny format URL",
-    "Logs" : "Logi"
+    "Incorrect username or password." :         "Niepoprawny login lub hasło.",
+    "Order with that number already exist." :   "Zlecenie o takim numerze już istnieje.",
+    "Field required." :                         "Pole wymagane.",
+    "Invalid URL format." :                     "Niepoprawny format URL",
+    "Logs" :                                    "Logi",
+    "Username can not be empty." :              "Nazwa użykownika nie może być pusta.",
+    "Wrong e-mail or already used." :           "Adres email jest niepoprawny lub już jest używany.",
+    "Wrong password." :                         "Niepoprawne hasło",
+    "Passwords do not match." :                 "Hasła nie są takie same.",
+    " Recent activity: " :                      " Ostania aktywność: ",
+    "TODO:" :                                   "Do zrobienia:",
+    "Changelog:" :                              "Dziennik zmian:",
+    "Options" :                                 "Ustawienia"
+
 }

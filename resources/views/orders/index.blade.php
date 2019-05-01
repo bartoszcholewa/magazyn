@@ -16,6 +16,7 @@
                             <th>Podgląd</th>
                             <th>Czas w obiegu</th>
                             <th>Status</th>
+                            <th>Zatwierdzone</th>
                         </tr>
                     </thead>     
                     <tbody>
@@ -42,6 +43,9 @@
                                     @if($order->order_STATUS == 1) Wydrukowane @endif
                                     @if($order->order_STATUS == 2) Wysłane @endif
                                     @if($order->order_STATUS == 3) Reklamacja @endif
+                                </td>
+                                <td>
+                                    @if(isset($order->order_VERIFIED)) <i class="fas fa-check-circle" style="color:limegreen"></i> @else <i class="fas fa-spinner" style="color:grey"></i> @endif
                                 </td>
                             </tr>
                         @endif

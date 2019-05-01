@@ -11,6 +11,13 @@ use App\Order;
 use App\Roll;
 use App\Operation;
 use Carbon;
+use Mail;
+use App\Mail\NewOrderMail;
+use App\Mail\VerifiedOrderMail;
+use Auth;
+use Notification;
+use App\Notifications\NewOrder;
+use App\Option;
 
 class OrdersController extends Controller
 {
@@ -182,6 +189,13 @@ class OrdersController extends Controller
             $op = "Dodano <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a>";
         }
         
+        // Sending a email
+        Mail::to(Option::find(1)->option_VALUE)->send(new NewOrderMail($order, $user=auth()->user()));
+
+        //Sending a notification
+        //TODO;
+
+
         Controller::operation($op);
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
@@ -342,5 +356,34 @@ class OrdersController extends Controller
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
+    public function verified($id)
+    {
+        if(in_array(Auth::user()->type, array('admin', 'boss')))
+        {
+            $order = Order::find($id);
+            if(isset($order))
+            {
+                $order->order_VERIFIED = Carbon\Carbon::now();
+                $order->timestamps = false;
+                $order->save();
+                $redirect_respond = "Zlecenie <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a> zatwierdzone";
+
+                // Sending a verified email
+                Mail::to(Option::find(2)->option_VALUE)->send(new VerifiedOrderMail($order, $user=auth()->user()));
+    
+                Controller::operation($redirect_respond);
+                return redirect('/orders')->with('success', $redirect_respond);
+            }
+            else
+            {
+                return redirect(Session::get('requestReferrer'))->with('error', 'To zlecenie zostało usunięte.');
+            }
+        }
+        else
+        {
+            return redirect('/orders')->with('error', "Brak uprawnień szefa.");
+        }
+
+    }
 
 }

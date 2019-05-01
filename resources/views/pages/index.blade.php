@@ -5,7 +5,28 @@
     <div class="row">
         <div class="col-md-4">
 
-            <h2>Changelog:</h2>
+            <h2>{{ __('Changelog:') }}</h2>
+            <div class="card border-primary mb-3">
+                <div class="card-header">v.0.1.1</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">13.04.2019 - 28.04.2019</h5>
+                    <p class="card-text">
+                        - Zachowanie zlecenia po usunięciu rolki/materiału<br>
+                        - Strona podglądu logów/błędów: magazyn/logs<br>
+                        - Dodano własny widok dodawania użytkowników: /users/create/<br>
+                        - Dodaj UserType: admin, handlowiec, szef, itp.<br>
+                        - Zachowanie widoku użykownika po jego usunięciu: error message<br>
+                        - Wyłączono wbudowaną funkcje register<br>
+                        - Uzupełniono walidacje tworzenia użytkownika<br>
+                        - Lokalizacja walidacji tworzenia użytkownika<br>
+                        - Lokalizacja strony głównej<br>
+                        - Mailowe zatwierdzanie zleceń przez szefa<br>
+                        - Zatwierdzone maile idą na kolejny adres<br>
+                        - Dodano Ustawienia Ogólne (zmiana maili obiegowych, nazwa programu, wersja programu)<br>
+                    </p>
+                </div>
+            </div>
+
             <div class="card border-primary mb-3">
                 <div class="card-header">v.0.1.0</div>
                 <div class="card-body text-primary">
@@ -52,35 +73,36 @@
         </div>
 
         <div class="col-md-4">
-            <h2>Do zrobienia:</h2>
+            <h2>{{ __('TODO:') }}</h2>
             <div class="card border-dark mb-3">
-                    <div class="card-header">23.02.2019</div>
+                    <div class="card-header">23.02.2019 - v.0.1.1</div>
                     <div class="card-body text-dark">
                         <p class="card-text">
-                            <i class="fas fa-check-square"></i> - Zachowanie zlecenia po usunięciu rolki/materiału<br>
-                            <i class="fas fa-check-square"></i> - Strona podglądu logów/błędów: magazyn/logs<br>
+                        
+                            
                             <i class="far fa-square"></i> - "Order by"/filtrowanie zleceń<br>
                             <i class="far fa-square"></i> - Widok klientów<br>
                             <i class="far fa-square"></i> - SLUG: Czytelne URL (np. magazyn/orders/pw-000915/)<br>
                             <i class="far fa-square"></i> - Widok dla zarządzania statusami rolek/zleceń<br>
                             <i class="far fa-square"></i> - Określ wymiar grafiki z JSON URI zlecenia<br>
-                            <i class="far fa-square"></i> - Dodanie obiegu mailowego<br>
+                            
                             <i class="far fa-square"></i> - Możliwość dodania instniejącego zlecenia z widoku MAGAZYNU<br>
                             <i class="far fa-square"></i> - Dodaj adresy cache:clear po autoryzacji admina<br>
-                            <i class="far fa-square"></i> - Dodaj obiegi PROMAX'a<br>
+                            <i class="far fa-square"></i><b> - Dodaj obiegi PROMAX'a</b><br>
                             <i class="far fa-square"></i> - Archiwizuj zamiast usuwać<br>
                             <i class="far fa-square"></i> - Opcja wyszukiwania zlecenia<br>
                             <i class="far fa-square"></i> - Statystyki: zleceń w tym miesiącu itp.<br>
-                            <i class="fas fa-check-square"></i> - Dodaj UserType: admin, handlowiec, szef, itp.<br>
-                            <i class="far fa-square"></i><b> - Różne widoki dla różnych UserType</b><br>
+
+                            <i class="far fa-square"></i> - Różne widoki dla różnych UserType<br>
                             <i class="far fa-square"></i> - Usuwanie zleceń z planu plastyków<br>
+                            <i class="far fa-square"></i> - Statystyki poszczególnych użytkowników w widoku użytkownika<br>
                         </p>
                     </div>
                 </div>
         </div>
         <div class="col-md-4">
             <ul class="list-group">
-                <li class="list-group-item active"> Ostatnia aktywność 
+                <li class="list-group-item active"> {{ __(' Recent activity: ') }}
                     <div class="float-right">
                     <a href="{{$operations->previousPageUrl()}}"><i class="fas fa-arrow-circle-left" style="color:white"></i></a> 
                     {{ $operations->currentPage() }} / {{ $operations->lastPage() }} 

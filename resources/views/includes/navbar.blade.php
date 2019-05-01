@@ -2,7 +2,7 @@
 
         <!-- UPPER NAVBAR -->
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">PROMAX | Magazyn <small>v.0.1.0</small></a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">{{$program_NAME}} <small>{{$program_VERSION}}</small></a>
 
             <!-- Authentication Links -->
             <ul class="nav px-3">
@@ -120,6 +120,12 @@
                             <a class="nav-link" href="/users">
                                 <i class="fas fa-user-cog"></i>
                                 {{ __('Users') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/options">
+                                <i class="fas fa-cogs"></i>
+                                {{ __('Options') }}
                             </a>
                         </li>
                         <li class="nav-item">

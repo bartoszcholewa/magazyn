@@ -14,6 +14,7 @@ Route::get('/', function () {
     return view('index');
 });
 */
+
 Route::get('lang/{locale}', 'LocalizationController@index');
 Route::get('/', 'PagesController@index');
 Route::get('/materials/{id}/raport', 'MaterialsController@raport');
@@ -25,6 +26,7 @@ Route::resource('suppliers', 'SuppliersController');
 Route::resource('rolls', 'RollsController');
 Route::get('/rolls/get/{id}', 'OrdersController@getRolls');
 Route::patch('/orders/{id}', 'OrdersController@wydrukowane');
+Route::get('/orders/{id}/verified', 'OrdersController@verified');
 Route::resource('orders', 'OrdersController');
 Route::get('/planplastykow', 'PlanPlastykowController@podglad')->name('planplastykow.podglad');
 Route::get('/planplastykow/edycja', 'PlanPlastykowController@edycja')->name('planplastykow.edycja');
@@ -34,3 +36,8 @@ Route::get('/users/{id}/changepassword', 'UsersController@changepassword')->name
 Route::put('/users/{id}/updatepassword', 'UsersController@updatepassword')->name('users.updatepassword');
 Route::resource('users', 'UsersController');
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+// redirect from register page to home page
+Route::get('/register', function () {
+    return redirect('/');
+});
+Route::resource('options', 'OptionsController');

@@ -42,7 +42,15 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show')->with('user', $user);
+        
+        // Sprawdź czy istnieje przed wyświetleniem
+        if(isset($user))
+        {
+            return view('users.show')->with('user', $user);
+        }
+        else {
+            return redirect(Session::get('requestReferrer'))->with('error', 'Ten użytkownik został usunięty');
+        }
     }
 
     /**
@@ -64,6 +72,8 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users',
             'password' => 'required',
             'password_confirm' => 'required|same:password'
         ]);
