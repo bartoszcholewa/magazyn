@@ -11,15 +11,7 @@ use App\Operation;
 
 class UsersController extends Controller
 {
-    /**
-     * Autoryzacja dostępu
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
+
     /**
      * Display a listing of the resource.
      *

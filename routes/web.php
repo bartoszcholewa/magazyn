@@ -20,7 +20,6 @@ Route::get('/', 'PagesController@index');
 Route::get('/materials/{id}/raport', 'MaterialsController@raport');
 Route::resource('materials', 'MaterialsController');
 Auth::routes(['verify' => true]);
-
 Route::get('/dashboard', 'DashboardController@index');
 Route::resource('suppliers', 'SuppliersController');
 Route::resource('rolls', 'RollsController');
@@ -32,12 +31,20 @@ Route::get('/planplastykow', 'PlanPlastykowController@podglad')->name('planplast
 Route::get('/planplastykow/edycja', 'PlanPlastykowController@edycja')->name('planplastykow.edycja');
 Route::put('/planplastykow', 'PlanPlastykowController@updateOrders')->name('planplastykow.updateOrders');
 Route::patch('/planplastykow/{id}', 'PlanPlastykowController@updateNiezaplanowane')->name('planplastykow.updateNiezaplanowane');
-Route::get('/users/{id}/changepassword', 'UsersController@changepassword')->name('users.changepassword');
-Route::put('/users/{id}/updatepassword', 'UsersController@updatepassword')->name('users.updatepassword');
-Route::resource('users', 'UsersController');
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 // redirect from register page to home page
 Route::get('/register', function () {
     return redirect('/');
 });
-Route::resource('options', 'OptionsController');
+Route::group(['middleware' => 'App\Http\Middleware\CheckIfAdmin'], function()
+{
+    Route::get('/users/{id}/changepassword', 'UsersController@changepassword')->name('users.changepassword');
+    Route::put('/users/{id}/updatepassword', 'UsersController@updatepassword')->name('users.updatepassword');
+    Route::resource('users', 'UsersController');
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::resource('options', 'OptionsController');
+    Route::get('/config-cache', function() {
+        $exitCode = Artisan::call('config:cache');
+        return redirect(config('options.siteurl').'options')->with('success', "Zaktualizowano ustawienia ogólne");
+    });
+
+});

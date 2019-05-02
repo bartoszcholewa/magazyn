@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Option;
+use Config;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,11 +18,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         Schema::defaultStringLength(191);
-        $program_NAME = Option::find(3)->option_VALUE;
-        $program_VERSION = Option::find(4)->option_VALUE;
-        View::share('program_NAME', $program_NAME);
-        View::share('program_VERSION', $program_VERSION);
+        $options = Option::all()->pluck('option_VALUE', 'option_NAME')->toArray();
+        config()->set('options', $options);
+        //dd("provider");
     }
 
     /**
@@ -30,6 +32,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Config::set('mail.driver', config('options.maildriver'));
+        Config::set('mail.host', config('options.mailhost'));
+        Config::set('mail.port', config('options.mailport'));
+        Config::set('mail.from.address', config('options.mailfromaddress'));
+        Config::set('mail.from.name', config('options.mailfromname'));
+        Config::set('mail.encryption', config('options.mailencryption'));
+        Config::set('mail.username', config('options.mailusername'));
+        Config::set('mail.password', config('options.mailpassword'));
+
     }
 }

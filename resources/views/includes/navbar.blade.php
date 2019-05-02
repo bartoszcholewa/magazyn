@@ -2,7 +2,7 @@
 
         <!-- UPPER NAVBAR -->
         <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">{{$program_NAME}} <small>{{$program_VERSION}}</small></a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">{{ config('options.appname')}} <small>{{ config('options.appversion')}}</small></a>
 
             <!-- Authentication Links -->
             <ul class="nav px-3">

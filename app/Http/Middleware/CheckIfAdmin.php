@@ -15,10 +15,10 @@ class CheckIfAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (\Auth::id() == 1) {
+        if (\Auth::user()->type == "admin") {
             return $next($request);
           }
       
-            return redirect('/');
+            return redirect('/')->with('error', "Brak dostępu!");
     }
 }

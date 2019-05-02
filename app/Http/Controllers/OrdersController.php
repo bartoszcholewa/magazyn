@@ -190,7 +190,7 @@ class OrdersController extends Controller
         }
         
         // Sending a email
-        Mail::to(Option::find(1)->option_VALUE)->send(new NewOrderMail($order, $user=auth()->user()));
+        Mail::to(config('options.firstemail'))->send(new NewOrderMail($order, $user=auth()->user()));
 
         //Sending a notification
         //TODO;
@@ -369,7 +369,7 @@ class OrdersController extends Controller
                 $redirect_respond = "Zlecenie <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a> zatwierdzone";
 
                 // Sending a verified email
-                Mail::to(Option::find(2)->option_VALUE)->send(new VerifiedOrderMail($order, $user=auth()->user()));
+                Mail::to(config('options.lastemail'))->send(new VerifiedOrderMail($order, $user=auth()->user()));
     
                 Controller::operation($redirect_respond);
                 return redirect('/orders')->with('success', $redirect_respond);

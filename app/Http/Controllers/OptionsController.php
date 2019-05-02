@@ -6,18 +6,12 @@ use Illuminate\Http\Request;
 use App\Option;
 use Illuminate\Support\Facades\URL;
 use Session;
+use Illuminate\Support\Facades\Cache;
+use Artisan;
 
 class OptionsController extends Controller
 {
-     /**
-     * Autoryzacja dostępu
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,11 +51,19 @@ class OptionsController extends Controller
         $option->option_VALUE = $request->input('option_VALUE');
         $option->option_AUTOLOAD = $request->input('option_AUTOLOAD');
         $option->save();
+        
 
         $redirect_respond = "Zaktualizowano ustawienia ogólne";
         Controller::operation($redirect_respond);
 
-        return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
+        //Cache::flush();
+        //$exitCode = Artisan::call('cache:clear');
+        //$exitCode = Artisan::call('config:cache');
+        //$exitCode = Artisan::call('config:clear');
+        //$exitCode = Artisan::call('optimize');
+
+        //return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
+        return redirect('/config-cache');
     }
 
 }
