@@ -17,6 +17,8 @@
                         - Automatyczne czyszczenie cache po zmianie w Ustawieniach Ogólnych<br>
                         - Dodano zdalny dostęp do funkcji czyszczenia pamięci podręcznej<br>
                         - Poprawiono politykę dostępu.<br>
+                        - Zoptymalizowano zapytania bazy danych (eager loading)<br>
+                        - Dodano narzędzie Telecope<br>
                     </p>
                 </div>
             </div>
@@ -111,6 +113,7 @@
                             <i class="far fa-square"></i> - Różne widoki dla różnych UserType<br>
                             <i class="far fa-square"></i> - Usuwanie zleceń z planu plastyków<br>
                             <i class="far fa-square"></i> - Statystyki poszczególnych użytkowników w widoku użytkownika<br>
+                            <i class="far fa-square"></i><b> - CACHE</b><br>
                         </p>
                     </div>
                 </div>

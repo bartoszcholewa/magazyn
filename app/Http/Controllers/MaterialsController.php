@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\URL;
 use Session;
 use App\Material;
 use App\Supplier;
+use Facades\App\Repositories\MaterialsRepository;
 
 class MaterialsController extends Controller
 {
+    var $materialRepository;
     /**
      * Autoryzacja dostępu
      *
@@ -27,7 +29,12 @@ class MaterialsController extends Controller
      */
     public function index()
     {
-        $materials = Material::all();
+        /* eager loading */
+        $materials = Material::with('supplier')->get();
+
+        /* cache */
+        //$materials = MaterialsRepository::all('material_NAME');
+
         Session::put('requestReferrer', URL::current());
         return view('materials.index')->with('materials', $materials);
     }
@@ -75,6 +82,9 @@ class MaterialsController extends Controller
         $redirect_respond = "Dodano <a href='materials/".$material->material_ID."'>".$material->material_NAME."</a>";
         Controller::operation($redirect_respond);
 
+        /* cache flush all */
+        //MaterialsRepository::flush();
+
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
@@ -86,7 +96,10 @@ class MaterialsController extends Controller
      */
     public function show($id)
     {
-        $material = Material::find($id);
+        /* cache */
+        //$material = MaterialsRepository::get($id);
+
+        $material = Material::with(['supplier', 'creator', 'editor'])->find($id);
 
         if(isset($material))
         {
@@ -159,6 +172,9 @@ class MaterialsController extends Controller
 
         $redirect_respond = "Usunięto ".$material->material_NAME."";
         Controller::operation($redirect_respond);
+
+        /* cache flush all */
+        MaterialsRepository::flush();
 
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }

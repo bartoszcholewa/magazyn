@@ -20,7 +20,12 @@ class PagesController extends Controller
     }
     public function index(){
 
-        $operations = Operation::orderBy('operation_DATETIME', 'desc')->paginate(5);
+        /* lazy loading */
+        //$operations = Operation::orderBy('operation_DATETIME', 'desc')->paginate(5);
+
+        /* eager loading */
+        $operations = Operation::with('user')->orderBy('operation_DATETIME', 'desc')->paginate(5);
+
         Session::put('requestReferrer', URL::current());
         return view('pages.index')->with('operations', $operations);
     }

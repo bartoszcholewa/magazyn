@@ -3,7 +3,7 @@
 @include('includes.messages')
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">  
     <div class="col-md-6">
-        <h2 style="display: inline-block">Ustawienia Ogólne:</h2>
+        <h2 style="display: inline-block">Ustawienia Ogólne <small style="color:gray">- Laravel Framework v{{ App::VERSION() }} </small></h2>
         @if (count($options) > 0)
             <div class="table-responsive">
                 <table class="table table-striped table-sm">      

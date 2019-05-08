@@ -30,10 +30,30 @@ class RollsController extends Controller
      */
     public function index()
     {
-        // Load rolls table + load for each coresponding orders
-        $rolls = Roll::withCount('orders')->get(); 
+        /* eager loading */
+        $rolls = Roll::with(['orders', 'material'])->withCount('orders')->get();
+        
+        /* actual size to each roll based on orders size */
+        $new_rolls = $rolls->map(function ($roll) {
+            $orders_lenght = 0;
+            $initial_roll_lenght = $roll->roll_LENGTH;
+            foreach ($roll->orders as $order)
+            {
+                if(isset($order->order_ACTUAR_L))
+                {
+                    $orders_lenght = $orders_lenght + $order->order_ACTUAR_L;
+                }
+                else
+                {
+                    $orders_lenght = $orders_lenght + $order->order_SAFE_L;
+                }
+            }
+            $roll['roll_ACTUAL_L'] = $initial_roll_lenght - $orders_lenght;
+            return $roll;
+        });
+
         Session::put('requestReferrer', URL::current());
-        return view('rolls.index')->with('rolls', $rolls);
+        return view('rolls.index')->with('rolls', $new_rolls);
     }
 
     /**

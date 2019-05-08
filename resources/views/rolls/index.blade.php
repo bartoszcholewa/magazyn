@@ -33,7 +33,7 @@
                             @if($roll->roll_STATUS == 2) Resztka @endif
                             @if($roll->roll_STATUS == 3) Zakończona @endif
                         </td>
-                        <td>{{$roll->roll_LENGTH - $roll->orders->sum('order_EXPECTED_L')}}</td>
+                        <td>{{$roll->roll_ACTUAL_L}}</td>
                         <td>{{$roll->orders_count}}</td>
                         
                     </tr>
