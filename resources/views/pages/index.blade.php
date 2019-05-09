@@ -19,6 +19,7 @@
                         - Poprawiono politykę dostępu.<br>
                         - Zoptymalizowano zapytania bazy danych (eager loading)<br>
                         - Dodano narzędzie Telecope<br>
+                        - Autodeploy Testing<br>
                     </p>
                 </div>
             </div>
