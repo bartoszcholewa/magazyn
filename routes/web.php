@@ -48,3 +48,4 @@ Route::group(['middleware' => 'App\Http\Middleware\CheckIfAdmin'], function()
     });
 
 });
+Route::post('deploy', 'DeployController@deploy');
