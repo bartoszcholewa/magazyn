@@ -20,6 +20,7 @@
                         - Zoptymalizowano zapytania bazy danych (eager loading)<br>
                         - Dodano narzędzie Telecope<br>
                         - Autodeploy Testing OK???<br>
+                        
                     </p>
                 </div>
             </div>

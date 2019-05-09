@@ -24,6 +24,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        dd($root_path = base_path());
         //Return materials created by user:
         $material_CREATOR_ID = auth()->user()->id;
         $user = User::find($material_CREATOR_ID);
