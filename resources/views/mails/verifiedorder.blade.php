@@ -1,4 +1,4 @@
-Użytkownik {{ $user->name }} stworzył nowe zlecenie: <a href='http://magazyn/orders/{{ $order->order_ID }}'> PW-{{ $order->order_NAME}} </a>
+Użytkownik {{ $user->name }} stworzył nowe zlecenie: <a href="{{ config('options.siteurl')}}orders/{{ $order->order_ID }}"> PW-{{ $order->order_NAME}} </a>
 <br>
 <!--Button-->
 <center>
