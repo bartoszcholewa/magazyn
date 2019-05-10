@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Roll extends Model
 {
+    use Cachable;
     public $primaryKey = 'roll_ID';
 
     // Create Relation: [roll_CREATOR] --belongsto-->> [user_ID]

@@ -20,6 +20,8 @@
                         - Zoptymalizowano zapytania bazy danych (eager loading)<br>
                         - Dodano narzędzie Telecope<br>
                         - DigitalOcean deploy<br>
+                        - Aktualizacja do Laravel Framework 5.8.*<br>
+                        - Implementacja Reris Model Cache<b> Dodaj FLUSH! <b><br> 
                     </p>
                 </div>
             </div>

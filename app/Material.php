@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Material extends Model
 {
+    use Cachable;
 
     public $primaryKey = 'material_ID';
 

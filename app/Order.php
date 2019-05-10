@@ -2,10 +2,12 @@
 
 namespace App;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use Cachable;
     public $primaryKey = 'order_ID';
 
     protected $fillable = ['order_pp_ORDER', 'order_pp_ID'];
