@@ -1,4 +1,4 @@
-# magazyn --
+# magazyn
 Laravel 5.7
 
 # Install Process:
