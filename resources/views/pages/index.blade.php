@@ -120,12 +120,12 @@
                     <div class="card-body text-dark">
                         <p class="card-text">
                             <i class="far fa-square"></i> - "Order by"/filtrowanie zleceń<br>
-                            <i class="far fa-square"></i> - Widok klientów<br>
+                            <i class="far fa-square"></i> - Widok listy klientów<br>
                             <i class="far fa-square"></i> - SLUG: Czytelne URL (np. magazyn/orders/pw-000915/)<br>
                             <i class="far fa-square"></i> - Widok dla zarządzania statusami rolek/zleceń<br>
                             <i class="far fa-square"></i> - Określ wymiar grafiki z JSON URI zlecenia<br>
-                            <i class="far fa-square"></i> - Możliwość dodania instniejącego zlecenia z widoku MAGAZYNU<br>
-                            <i class="far fa-square"></i> - Dodaj adresy cache:clear po autoryzacji admina<br>
+                            <i class="far fa-square"></i> - <strike>Możliwość dodania instniejącego zlecenia z widoku MAGAZYNU</strike><br>
+                            <i class="far fa-square"></i> - Dodaj przycisk cache:clear po autoryzacji admina<br>
                             <i class="far fa-square"></i><b> - Dodaj obiegi PROMAX'a</b><br>
                             <i class="far fa-square"></i> - Archiwizuj zamiast usuwać<br>
                             <i class="far fa-square"></i> - Opcja wyszukiwania zlecenia<br>
@@ -134,6 +134,7 @@
                             <i class="far fa-square"></i> - Usuwanie zleceń z planu plastyków<br>
                             <i class="far fa-square"></i> - Statystyki poszczególnych użytkowników w widoku użytkownika<br>
                             <i class="far fa-square"></i><b> - CACHE</b><br>
+                            <i class="far fa-square"></i> - Na koncie, dodaj opcje zatwierdzenia zlecenia z pozycji Index<br>
                         </p>
                     </div>
                 </div>
