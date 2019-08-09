@@ -124,10 +124,11 @@ return [
         Watchers\LogWatcher::class => env('TELESCOPE_LOG_WATCHER', true),
         Watchers\MailWatcher::class => env('TELESCOPE_MAIL_WATCHER', true),
 
-        Watchers\ModelWatcher::class => [
+        \App\Watchers\ModelWatcher::class => [
             'enabled' => env('TELESCOPE_MODEL_WATCHER', true),
             'events' => ['eloquent.*'],
         ],
+
 
         Watchers\NotificationWatcher::class => env('TELESCOPE_NOTIFICATION_WATCHER', true),
 

@@ -7,6 +7,22 @@
 
             <h2>{{ __('Changelog:') }}</h2>
             <div class="card border-primary mb-3">
+                <div class="card-header">v.0.1.3</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">01.07.2019</h5>
+                    <p class="card-text">
+                        - Umieszczono wersje v.0.1.2 na Ubuntu 18.04 w firmie<br>
+                        - Podpięto PHPMyAdmin<br>
+                        - Utworzono dostęp zdalny po SSH z VSCode Windows do plików źródłowych na linuxie<br>
+                        - Usunięto wszystkie śmieciowe Zlecenia<br>
+                        - Dodano poprawne zlecenia dla Latex Premium oraz Canvas (11.07.2019)<br>
+                        - Poprawiono opcję wysyłania maili z potwierdzeniem zlecenia (jeśli zlecenie nie jest kalibracją albo nie jest "Nowe")<br>
+                        - Naprawiono błędy dla PHPMyAdmin<br>
+                        - Zablokowano edycję zatwierdzonych zleceń<br>
+                    </p>
+                </div>
+            </div>
+            <div class="card border-primary mb-3">
                 <div class="card-header">v.0.1.2</div>
                 <div class="card-body text-primary">
                     <h5 class="card-title">28.04.2019 - 03.05.2019</h5>
@@ -20,8 +36,6 @@
                         - Zoptymalizowano zapytania bazy danych (eager loading)<br>
                         - Dodano narzędzie Telecope<br>
                         - DigitalOcean deploy<br>
-                        - Aktualizacja do Laravel Framework 5.8.*<br>
-                        - Implementacja Reris Model Cache<b> Dodaj FLUSH! </b><br> 
                     </p>
                 </div>
             </div>

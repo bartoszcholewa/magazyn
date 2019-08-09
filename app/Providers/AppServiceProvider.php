@@ -7,7 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Option;
 use Config;
-
+use Illuminate\Support\Facades\Redis;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
+        Redis::enableEvents();
         Schema::defaultStringLength(191);
         $options = Option::all()->pluck('option_VALUE', 'option_NAME')->toArray();
         config()->set('options', $options);
