@@ -66,6 +66,7 @@ class MaterialsController extends Controller
             'material_GSQM' => 'required',
             'material_DESCRIPTION' => 'nullable',
             'material_URL' => 'nullable',
+            'material_TYPE' => 'required',
         ]);
         $material = new Material;
         $material->material_NAME = $request->input('material_NAME');
@@ -77,6 +78,7 @@ class MaterialsController extends Controller
         $material->material_URL = $request->input('material_URL');
         $material->material_CREATOR_ID = auth()->user()->id;
         $material->material_EDITOR_ID = auth()->user()->id;
+        $material->material_TYPE = $request->input('material_TYPE');
         $material->save();
 
         $redirect_respond = "Dodano <a href='materials/".$material->material_ID."'>".$material->material_NAME."</a>";
@@ -141,6 +143,7 @@ class MaterialsController extends Controller
             'material_GSQM' => 'required',
             'material_DESCRIPTION' => 'nullable',
             'material_URL' => 'nullable',
+            'material_TYPE' => 'required',
         ]);
         $material = Material::find($id);
         $material->material_NAME = $request->input('material_NAME');
@@ -151,6 +154,7 @@ class MaterialsController extends Controller
         $material->material_DESCRIPTION = $request->input('material_DESCRIPTION');
         $material->material_URL = $request->input('material_URL');
         $material->material_EDITOR_ID = auth()->user()->id;
+        $material->material_TYPE = $request->input('material_TYPE');
         $material->save();
 
         $redirect_respond = "Zaktualizowano <a href='materials/".$material->material_ID."'>".$material->material_NAME."</a>";

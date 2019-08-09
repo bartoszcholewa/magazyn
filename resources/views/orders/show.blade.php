@@ -26,7 +26,7 @@
         </div>
     @else
         <div class="row col-sm-12">
-            <h2><b>PW-{{$order->order_NAME}}</b> - {{$order->order_CLIENT_NAME}} {{$order->order_CLIENT_SURNAME}}</h2>
+            <h2><b>PW-{{$order->order_NAME}}</b> @if($order->order_QUANTITY > 1) ({{$order->order_QUANTITY}} szt.) @endif - {{$order->order_CLIENT_NAME}} {{$order->order_CLIENT_SURNAME}}</h2>
         </div>
         <div class="row col-sm-12">
             <table class="table col-sm-4 mr-5">

@@ -63,6 +63,12 @@
                 @if($errors->has("material_URL")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
                 {{Form::text('material_URL', $material->material_URL, ['class' => $invalid, 'placeholder' => 'http://www...'])}}
             </div>
+
+            <div class="form-group">
+                {{Form::label('material_TYPE', 'Typ:')}}
+                @if($errors->has("material_TYPE")) @php($invalid="form-control is-invalid") @else @php($invalid="form-control") @endif
+                {{Form::text('material_TYPE', $material->material_TYPE, ['class' => $invalid, 'placeholder' => 'np. Fototapeta'])}}
+            </div>
         </div>
         <div class="col col-lg-6">
             <div class="form-group">

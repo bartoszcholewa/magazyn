@@ -28,6 +28,9 @@
                                     @if($order->order_LAMINATE == 1) 
                                         <i class="fas fa-paint-roller ml-1 mr-1" title="Laminacja"></i> 
                                     @endif
+                                    @if($order->order_QUANTITY > 1)
+                                        <b>({{$order->order_QUANTITY}} szt.)</b>
+                                    @endif
                                 </td>
                                 <td>{{$order->order_CLIENT_NAME}} {{$order->order_CLIENT_SURNAME}}</td>
                                 {{-- <td>@if($order->order_MATERIAL_ID == NULL) Brak @else @if(!$order->material()->exists()) Usunięty @else {{$order->material->material_NAME}} @endif @endif</td>

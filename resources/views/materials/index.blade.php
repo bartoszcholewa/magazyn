@@ -16,6 +16,7 @@
                         <th>Szerokość (cm)</th>
                         <th>Długość (mb)</th>
                         <th>Gramatura (g/m<sup>2</sup>)</th>
+                        <th>Typ</th>
                     </tr>
                 </thead>     
                 <tbody>
@@ -26,6 +27,7 @@
                         <td>{{$material->material_WIDTH}}</td>
                         <td>{{$material->material_LENGTH}}</td>
                         <td>{{$material->material_GSQM}}</td>
+                        <td>{{$material->material_TYPE}}</td>
                     </tr>
                 @endforeach
                 </tbody>

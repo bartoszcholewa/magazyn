@@ -1,5 +1,28 @@
 Użytkownik {{ $user->name }} stworzył nowe zlecenie: <a href="{{ config('options.siteurl')}}orders/{{ $order->order_ID }}"> PW-{{ $order->order_NAME}} </a>
 <br>
+<!--SPREEDSHEET-->
+<table frame="VOID" cols="1" rules="NONE" cellspacing="0" border="0">
+  <colgroup><col width="197"></colgroup> <tbody>
+    <tr>
+      <td width="197" valign="MIDDLE" height="17" bgcolor="#CFE7F5"
+        align="CENTER"><b><font face="Arial">{{ $order->order_CLIENT_NAME }} {{ $order->order_CLIENT_SURNAME }}</font></b></td>
+    </tr>
+    <tr>
+      <td valign="MIDDLE" height="17" bgcolor="#CFE7F5"
+        align="CENTER"><font face="Arial">Picturewall</font></td>
+    </tr>
+    <tr>
+      <td valign="MIDDLE" height="17" bgcolor="#CFE7F5"
+        align="CENTER"><font face="Arial">{{ $order->order_QUANTITY }} x {{$order->material->material_TYPE}}</font></td>
+    </tr>
+    <tr>
+      <td valign="MIDDLE" height="17" bgcolor="#66FF00"
+        align="CENTER"><font face="Arial">Planowany czas: {{ $order->order_pp_PERIOD }} godz</font></td>
+    </tr>
+  </tbody>
+</table>
+Sugerowany czas pocięcia: {{ $order->order_CUTDATE }}
+
 <!--Button-->
 <center>
     <table align="center" cellspacing="0" cellpadding="0" width="100%">

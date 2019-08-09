@@ -31,7 +31,8 @@
                             <p>Dostawca: {{$material->supplier->supplier_NAME}}<br>
                             Szerokość: {{$material->material_WIDTH}}cm<br>
                             Długość: {{$material->material_LENGTH}}m<br>
-                            Gramatura: {{$material->material_GSQM}}g/m<sup>2</sup></p>
+                            Gramatura: {{$material->material_GSQM}}g/m<sup>2</sup><br>
+                            Typ: {{$material->material_TYPE}}</p>
                         </div>
                     </div>
                     @if($material->material_DESCRIPTION !== NULL)

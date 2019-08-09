@@ -136,6 +136,7 @@ class OrdersController extends Controller
             'order_OVERLAP' => 'nullable',
             'order_LAMINATE' => 'nullable',
             'order_GLUE' => 'nullable',
+            'order_QUANTITY' => 'required',
         ]);
         
         /* Wprowadzanie zwalidowanych danych */
@@ -165,6 +166,7 @@ class OrdersController extends Controller
         $order->order_GLUE = $request->input('order_GLUE');
         $order->order_CREATOR_ID = auth()->user()->id;
         $order->order_EDITOR_ID = auth()->user()->id;
+        $order->order_QUANTITY = $request->input('order_QUANTITY');
         
         /* Jeśli zlecenie jest kalibracją - zatwierdź weryfikacje - nie wysyłaj maila */
         if($order->order_NAME == "0")               
@@ -283,6 +285,7 @@ class OrdersController extends Controller
             'order_OVERLAP' => 'nullable',
             'order_LAMINATE' => 'nullable',
             'order_GLUE' => 'nullable',
+            'order_QUANTITY' => 'required',
         ]);
         /* Wprowadzanie zwalidowanych danych */
         $order->order_NAME = $request->input('order_NAME');
@@ -307,6 +310,7 @@ class OrdersController extends Controller
         $order->order_LAMINATE = $request->input('order_LAMINATE');
         $order->order_GLUE = $request->input('order_GLUE');
         $order->order_EDITOR_ID = auth()->user()->id;
+        $order->order_QUANTITY = $request->input('order_QUANTITY');
         $order->save();
         
         Controller::operation($redirect_respond);

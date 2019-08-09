@@ -92,6 +92,19 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="col col-lg-4">
+                            <div class="form-group">
+                                {{Form::label('order_QUANTITY', 'Ilość:')}}
+                                <div class="input-group mb-12">
+                                    {{Form::number('order_QUANTITY', $order->order_QUANTITY, ['class' => 'form-control', 'step'=>'any', 'placeholder' => 'np. 5', 'aria-describedby' => 'basic-addon2'])}}
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">szt.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

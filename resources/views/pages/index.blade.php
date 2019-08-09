@@ -11,14 +11,17 @@
                 <div class="card-body text-primary">
                     <h5 class="card-title">01.07.2019</h5>
                     <p class="card-text">
-                        - Umieszczono wersje v.0.1.2 na Ubuntu 18.04 w firmie<br>
-                        - Podpięto PHPMyAdmin<br>
-                        - Utworzono dostęp zdalny po SSH z VSCode Windows do plików źródłowych na linuxie<br>
-                        - Usunięto wszystkie śmieciowe Zlecenia<br>
-                        - Dodano poprawne zlecenia dla Latex Premium oraz Canvas (11.07.2019)<br>
+                        - Umieszczono wersje v.0.1.2 na <strike>Ubuntu 18.04 w firmie</strike> XAMPP Grafik-02 <br>
+                        - <strike>Podpięto PHPMyAdmin</strike><br>
+                        - <strike>Utworzono dostęp zdalny po SSH z VSCode Windows do plików źródłowych na linuxie</strike><br>
+                        - <strike>Usunięto wszystkie śmieciowe Zlecenia</strike><br>
+                        - <strike>Dodano poprawne zlecenia dla Latex Premium oraz Canvas (11.07.2019)</strike><br>
                         - Poprawiono opcję wysyłania maili z potwierdzeniem zlecenia (jeśli zlecenie nie jest kalibracją albo nie jest "Nowe")<br>
-                        - Naprawiono błędy dla PHPMyAdmin<br>
+                        - <strike>Naprawiono błędy dla PHPMyAdmin</strike><br>
                         - Zablokowano edycję zatwierdzonych zleceń<br>
+                        - Dodano możliwość zmiany ilości sztuk zlecenia<br>
+                        - Dodano wartość "Typ" do materiałów<br>
+                        - Mail z potwierdzeniem zlecenia zawiera odpowiednio zformatowany moduł do Planu Plastyków (wersja OOCalc) <br>
                     </p>
                 </div>
             </div>
