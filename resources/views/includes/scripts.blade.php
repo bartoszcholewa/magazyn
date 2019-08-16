@@ -81,3 +81,17 @@ $(window).on("resize", function () {
     $('.modal:visible').each(centerModal);
 });
 </script>
+
+<script>
+    function search_func(){
+        address=document.getElementById("address").value;
+        window.location = "?search=" + address;
+    }
+    function handle(e){
+        address=document.getElementById("address").value;
+        if(e.keyCode === 13){
+            window.location = "?search=" + address;
+        }
+        return false;
+    }
+</script>

@@ -33,6 +33,7 @@
     " Recent activity: " :                      " Ostania aktywność: ",
     "TODO:" :                                   "Do zrobienia:",
     "Changelog:" :                              "Dziennik zmian:",
-    "Options" :                                 "Ustawienia"
+    "Options" :                                 "Ustawienia",
+    "Telescope" :                               "Telescope"
 
 }

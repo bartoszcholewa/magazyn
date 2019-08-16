@@ -4,32 +4,30 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">  
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5 p-2">
                 <h2 style="display: inline-block">Zlecenia: &nbsp;  
                     <a class="btn btn-primary btn-sm" href="/orders/create" role="button">
                         <i class="fas fa-plus-circle"></i> Zlecenie
                     </a>
                 </h2>
             </div>
-            
+
             {{-- SEARCH BOX --}}
-            <div class="form-group row col-4">
-                <script type="text/javascript">
-                    function search() {
-                        var page = document.getElementById('search').value;
-                        window.location = "?search=" + page;
-                    }
-                </script>
-                <input class="form-control col-10" type="text" id="search" />
-                <div class="input-group-append">
-                    <input hidefocus="true" class="form-control" type="submit" value="Szukaj" onclick="search();"  />
+            <div class="col-3 p-2">
+                <div class="input-group row">
+                  <input type="text" class="form-control" placeholder="Wyszukaj..." id="address" onkeypress="handle(event)">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="search" onClick="search_func()" value="search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                  </div>
                 </div>
             </div>
 
             {{-- FILTER BOX --}}
-            <div class="form-group row col-2">
-                <label class="col-form-label ">Filtry: </label>
-                <div class="col">
+            <div class="col-3 p-2">
+                <div class="input-group row">
+                    <label for="filter" class="col-sm-2 col-form-label">Filtry:</label>
                     <select class="form-control" id="filter" onchange="location = this.value;">
                         <option value="orders">Wszystko</option>
                         <option value="?laminate=1" {{ Request::has('laminate') ? 'selected="selected"' : null }}>Laminacja</option>
@@ -37,6 +35,10 @@
                     </select>
                 </div>
             </div>
+            <div class="col-1 p-2">
+                <a class="btn btn-outline-primary btn-sm" href="/orders" role="button">RESET</a>
+            </div>
+
 
         </div>
         @if (count($orders) > 0)
@@ -80,7 +82,7 @@
                                     {{ $diff = Carbon\Carbon::parse($order->created_at)->diffForHumans(Carbon\Carbon::now(), true) }}
                                 </td>
                                 <td>
-                                    @if(isset($order->order_VERIFIED)) <i class="fas fa-check-circle" style="color:limegreen"></i> @else <i class="far fa-circle" style="color:grey"></i> @endif
+                                    @if(isset($order->order_VERIFIED)) <i class="fas fa-check-circle" style="color:limegreen" title="Zatwierdzone"></i> @else <i class="far fa-circle" style="color:grey" title="Niezatwierdzone"></i> @endif
                                 </td>
                                 {{--<td>
                                     @if($order->order_STATUS == 0) Nowe @endif
@@ -89,10 +91,10 @@
                                     @if($order->order_STATUS == 3) Reklamacja @endif
                                 </td> --}}
                                 <td>
-                                    @if(isset($order->order_PRINTED)) <i class="fas fa-check-circle" style="color:limegreen"></i> @else <i class="far fa-circle" style="color:grey"></i> @endif
+                                    @if(isset($order->order_PRINTED)) <i class="fas fa-check-circle" style="color:limegreen" title="Wydrukowane"></i> @else <i class="far fa-circle" style="color:grey" title="Niewydrukowane"></i> @endif
                                 </td>
                                 <td>
-                                    @if(isset($order->order_FINISHED)) <i class="fas fa-check-circle" style="color:limegreen"></i> @else <i class="far fa-circle" style="color:grey"></i> @endif
+                                    @if(isset($order->order_FINISHED)) <i class="fas fa-check-circle" style="color:limegreen" title="Wysłane"></i> @else <i class="far fa-circle" style="color:grey" title="Niewysłane"></i> @endif
                                 </td>
 
                             </tr>
