@@ -179,3 +179,7 @@ label {
 .card-img-top:hover {opacity: 0.7;}
 .wydrukowane {margin-left: 0;}
 .print {line-height: 1;}
+
+[data-href] {
+  cursor: pointer;
+}

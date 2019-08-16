@@ -55,7 +55,7 @@
                         <th>Czas pracy plastyka:</th>
                         <td>{{$order->order_pp_PERIOD}} godz</td>
                     </tr>
-                    @if($order->order_STATUS == "1") <tr class="table-success"> @else <tr> @endif
+                    {{--@if($order->order_STATUS == "1") <tr class="table-success"> @else <tr> @endif
                         <th>Status:</th>
                         <td class="row wydrukowane">@if($order->order_STATUS == 0) Nowe &nbsp;
                             {!!Form::open(['action' => ['OrdersController@wydrukowane', $order->order_ID], 'method' => 'POST'])!!}
@@ -65,6 +65,14 @@
                             @if($order->order_STATUS == 1) Wydrukowane @endif
                             @if($order->order_STATUS == 2) Wysłane @endif
                             @if($order->order_STATUS == 3) Reklamacja @endif</td>
+                    </tr> --}}
+                    <tr>
+                        <th>Status:</th>
+                            @if(!isset($order->order_VERIFIED)) <td>Nowe <a class="btn btn-primary btn-sm" href="/orders/{{$order->order_ID}}/verified" role="button">Zatwiedź</a></td>
+                            @elseif(!isset($order->order_PRINTED)) <td>Zatwiedzone <a class="btn btn-primary btn-sm" href="/orders/{{$order->order_ID}}/printed" role="button">Wydrukuj</a></td>
+                            @elseif(!isset($order->order_FINISHED)) <td>Wydrukowane <a class="btn btn-primary btn-sm" href="/orders/{{$order->order_ID}}/finished" role="button">Zakończ</a></td>
+                            @elseif(isset($order->order_FINISHED)) <td>Zakończone</td>
+                            @endif
                     </tr>
                     <tr>
                         <th>Uwagi:</th>

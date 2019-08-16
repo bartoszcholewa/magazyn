@@ -14,10 +14,13 @@ use Carbon;
 use Mail;
 use App\Mail\NewOrderMail;
 use App\Mail\VerifiedOrderMail;
+use App\Mail\PrintedOrderMail;
+use App\Mail\FinishedOrderMail;
 use Auth;
 use Notification;
 use App\Notifications\NewOrder;
 use App\Option;
+use App\ModelFilters\OrderFilter;
 
 class OrdersController extends Controller
 {
@@ -28,11 +31,12 @@ class OrdersController extends Controller
         $this->middleware('auth');
     }
 
-    /* LISTA ZLECEŃ ---------------------------------------------------------------------------------------------- */
-    public function index()
+    /* WIDOK LISTY ZLECEŃ ---------------------------------------------------------------------------------------------- */
+    public function index(Request $request)
     {
         /* Populacja listy - eager loading */
-        $orders = Order::with(['material', 'roll'])->orderBy('order_NAME', 'desc')->paginate(20);
+        /* Lista aktywnych filtrów TuckerEric\EloquentFilter - App/ModelFilters */
+        $orders = Order::filter($request->all())->with(['material', 'roll'])->orderBy('order_NAME', 'desc')->paginate(20);
 
         /* Umieść link do sesji dla opcji "Wróć" */
         Session::put('requestReferrer', URL::current());
@@ -178,15 +182,21 @@ class OrdersController extends Controller
         else {  
             $op = "Dodano <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a>";
             /* Jeśli zlecenie jest "Nowe" - żądaj weryfikacji - wyślij maila */
-            if($order->order_STATUS == 0)           
+            if($order->order_STATUS == 0 || $order->order_STATUS == 3)        
             {
                 $order->save();
                 /* Jeśli zlecenie jest "Nowe" - żądaj weryfikacji - wyślij maila */
-                Mail::to(config('options.firstemail'))->send(new NewOrderMail($order, $user=auth()->user()));
+                if(config('options_autoload.firstemail') == "yes") {
+                    Mail::to(config('options.firstemail'))->send(new NewOrderMail($order, $user=auth()->user()));
+                }
             }
             //jeśli zlecenie nie jest "Nowe" - zatwierdź weryfikacje - nie wysyłaj maila
-            else {                                  
-                $order->order_VERIFIED = Carbon\Carbon::now();
+            elseif($order->order_STATUS == 1) {                                  
+                $order->order_PRINTED = Carbon\Carbon::now();
+                $order->save();
+            }
+            elseif($order->order_STATUS == 2) {                                  
+                $order->order_FINISHED = Carbon\Carbon::now();
                 $order->save();
             }
         }
@@ -341,8 +351,9 @@ class OrdersController extends Controller
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
     }
 
-    public function wydrukowane($id)
+    /*public function wydrukowane($id)
     {
+        //dodaj logikę z verified
         $order = Order::find($id);
         $order->order_STATUS = 1;
         $order->timestamps = false;
@@ -351,7 +362,7 @@ class OrdersController extends Controller
         Controller::operation($redirect_respond);
 
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
-    }
+    }*/
 
     public function verified($id)
     {
@@ -366,7 +377,71 @@ class OrdersController extends Controller
                 $redirect_respond = "Zlecenie <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a> zatwierdzone";
 
                 // Sending a verified email
-                Mail::to(config('options.lastemail'))->send(new VerifiedOrderMail($order, $user=auth()->user()));
+                if(config('options_autoload.lastemail') == "yes") {
+                    Mail::to(config('options.lastemail'))->send(new VerifiedOrderMail($order, $user=auth()->user()));
+                }
+                
+                Controller::operation($redirect_respond);
+                return redirect('/orders')->with('success', $redirect_respond);
+            }
+            else
+            {
+                return redirect(Session::get('requestReferrer'))->with('error', 'To zlecenie zostało usunięte.');
+            }
+        }
+        else
+        {
+            return redirect('/orders')->with('error', "Brak uprawnień szefa.");
+        }
+
+    }
+
+    public function printed($id)
+    {
+        if(in_array(Auth::user()->type, array('admin', 'boss')))
+        {
+            $order = Order::find($id);
+            if(isset($order))
+            {
+                $order->order_PRINTED = Carbon\Carbon::now();
+                $order->timestamps = false;
+                $order->save();
+                $redirect_respond = "Zlecenie <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a> wydrukowane";
+
+                // Sending a verified email
+                if(config('options_autoload.picturewallmail') == "yes") {
+                    Mail::to(config('options.picturewallmail'))->send(new PrintedOrderMail($order, $user=auth()->user()));
+                }
+    
+                Controller::operation($redirect_respond);
+                return redirect('/orders')->with('success', $redirect_respond);
+            }
+            else
+            {
+                return redirect(Session::get('requestReferrer'))->with('error', 'To zlecenie zostało usunięte.');
+            }
+        }
+        else
+        {
+            return redirect('/orders')->with('error', "Brak uprawnień szefa.");
+        }
+
+    }
+
+    public function finished($id)
+    {
+        if(in_array(Auth::user()->type, array('admin', 'plastyk')))
+        {
+            $order = Order::find($id);
+            if(isset($order))
+            {
+                $order->order_FINISHED = Carbon\Carbon::now();
+                $order->timestamps = false;
+                $order->save();
+                $redirect_respond = "Zlecenie <a href='orders/".$order->order_ID."'>PW-".$order->order_NAME."</a> zakończone";
+
+                // Sending a verified email
+                Mail::to(config('options.picturewallmail'))->send(new FinishedOrderMail($order, $user=auth()->user()));
     
                 Controller::operation($redirect_respond);
                 return redirect('/orders')->with('success', $redirect_respond);

@@ -16326,3 +16326,7 @@ label {
   line-height: 1;
 }
 
+[data-href] {
+  cursor: pointer;
+}
+

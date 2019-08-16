@@ -21,7 +21,8 @@ class AppServiceProvider extends ServiceProvider
         Redis::enableEvents();
         Schema::defaultStringLength(191);
         $options = Option::all()->pluck('option_VALUE', 'option_NAME')->toArray();
-        config()->set('options', $options);
+        $optionsautoload = Option::all()->pluck('option_AUTOLOAD', 'option_NAME')->toArray();
+        config()->set(['options' => $options, 'options_autoload' => $optionsautoload]);
         //dd("provider");
     }
 

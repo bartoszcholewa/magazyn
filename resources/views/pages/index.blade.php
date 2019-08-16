@@ -11,17 +11,17 @@
                 <div class="card-body text-primary">
                     <h5 class="card-title">01.07.2019</h5>
                     <p class="card-text">
-                        - Umieszczono wersje v.0.1.2 na <strike>Ubuntu 18.04 w firmie</strike> XAMPP Grafik-02 <br>
-                        - <strike>Podpięto PHPMyAdmin</strike><br>
-                        - <strike>Utworzono dostęp zdalny po SSH z VSCode Windows do plików źródłowych na linuxie</strike><br>
-                        - <strike>Usunięto wszystkie śmieciowe Zlecenia</strike><br>
-                        - <strike>Dodano poprawne zlecenia dla Latex Premium oraz Canvas (11.07.2019)</strike><br>
+                        - Umieszczono wersje v.0.1.2 na XAMPP Grafik-02 <br>
                         - Poprawiono opcję wysyłania maili z potwierdzeniem zlecenia (jeśli zlecenie nie jest kalibracją albo nie jest "Nowe")<br>
-                        - <strike>Naprawiono błędy dla PHPMyAdmin</strike><br>
                         - Zablokowano edycję zatwierdzonych zleceń<br>
                         - Dodano możliwość zmiany ilości sztuk zlecenia<br>
                         - Dodano wartość "Typ" do materiałów<br>
                         - Mail z potwierdzeniem zlecenia zawiera odpowiednio zformatowany moduł do Planu Plastyków (wersja OOCalc) <br>
+                        - Dodano możliwość wejścia w zlecenie po kliknięciu w rząd zlecenia (jQuery)<br>
+                        - Zrezygnowano ze "Statusu" zlecenia - rozbito to na wartości Zatwierdzone, Wydrukowane i Wysłane<br>
+                        - Typ opcji "Autoload" w mailach określa czy maile mają być wysłane na ten mail, czy nie.<br>
+                        - Dodano możliwość zmiany statusu zlecenia z pozycji podglądu zlecenia<br>
+                        - Dodano opcję filtrowania listy zleceń / wyszukiwanie<br>
                     </p>
                 </div>
             </div>
@@ -119,12 +119,10 @@
                     <div class="card-header">23.02.2019 - v.0.1.1</div>
                     <div class="card-body text-dark">
                         <p class="card-text">
-                            <i class="far fa-square"></i> - "Order by"/filtrowanie zleceń<br>
                             <i class="far fa-square"></i> - Widok listy klientów<br>
                             <i class="far fa-square"></i> - SLUG: Czytelne URL (np. magazyn/orders/pw-000915/)<br>
                             <i class="far fa-square"></i> - Widok dla zarządzania statusami rolek/zleceń<br>
                             <i class="far fa-square"></i> - Określ wymiar grafiki z JSON URI zlecenia<br>
-                            <i class="far fa-square"></i> - <strike>Możliwość dodania instniejącego zlecenia z widoku MAGAZYNU</strike><br>
                             <i class="far fa-square"></i> - Dodaj przycisk cache:clear po autoryzacji admina<br>
                             <i class="far fa-square"></i><b> - Dodaj obiegi PROMAX'a</b><br>
                             <i class="far fa-square"></i> - Archiwizuj zamiast usuwać<br>
@@ -134,7 +132,8 @@
                             <i class="far fa-square"></i> - Usuwanie zleceń z planu plastyków<br>
                             <i class="far fa-square"></i> - Statystyki poszczególnych użytkowników w widoku użytkownika<br>
                             <i class="far fa-square"></i><b> - CACHE</b><br>
-                            <i class="far fa-square"></i> - Na koncie, dodaj opcje zatwierdzenia zlecenia z pozycji Index<br>
+                            <i class="far fa-square"></i> - Pobieraj Options->firstmail itp. z faktycznych kont użytkowników<br>
+
                         </p>
                     </div>
                 </div>

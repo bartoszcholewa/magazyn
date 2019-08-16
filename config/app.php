@@ -171,6 +171,9 @@ return [
          * Package Service Providers...
          */
 
+        //Kyslik\LaravelFilterable\FilterableServiceProvider::class,
+        EloquentFilter\ServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */

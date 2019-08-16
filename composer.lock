@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d8b554ed8903d81e9743e02010e518f",
+    "content-hash": "eb878aed2dfcf07309a9f51cb08d5b31",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -570,6 +570,69 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "kyslik/laravel-filterable",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Kyslik/laravel-filterable.git",
+                "reference": "a79b5de3a02f34a804f90b380acc55d9368e4ea3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Kyslik/laravel-filterable/zipball/a79b5de3a02f34a804f90b380acc55d9368e4ea3",
+                "reference": "a79b5de3a02f34a804f90b380acc55d9368e4ea3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.6.*|5.7.*|5.8.*",
+                "illuminate/http": "5.6.*|5.7.*|5.8.*",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "laravel/framework": "5.8.*",
+                "orchestra/testbench": "3.8.*",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kyslik\\LaravelFilterable\\FilterableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kyslik\\LaravelFilterable\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kiesel",
+                    "role": "Developer",
+                    "email": "martin.kiesel@gmail.com"
+                }
+            ],
+            "description": "Using URL query strings to filter Eloquent queries.",
+            "homepage": "https://github.com/kyslik/laravel-filterable",
+            "keywords": [
+                "filter",
+                "kyslik",
+                "laravel",
+                "laravel-filterable",
+                "query-strings"
+            ],
+            "time": "2019-02-28T19:23:31+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2983,6 +3046,67 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "tucker-eric/eloquentfilter",
+            "version": "1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tucker-Eric/EloquentFilter.git",
+                "reference": "8b2367b004dd0ce661e27bb79ee3e0eea7a09e05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/8b2367b004dd0ce661e27bb79ee3e0eea7a09e05",
+                "reference": "8b2367b004dd0ce661e27bb79ee3e0eea7a09e05",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0",
+                "illuminate/console": "~5.0",
+                "illuminate/database": "~5.0",
+                "illuminate/filesystem": "~5.0",
+                "illuminate/pagination": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "~5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "EloquentFilter\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "EloquentFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric Tucker",
+                    "email": "tucker.ericm@gmail.com"
+                }
+            ],
+            "description": "An Eloquent way to filter Eloquent Models",
+            "keywords": [
+                "eloquent",
+                "filter",
+                "laravel",
+                "model",
+                "query",
+                "search"
+            ],
+            "time": "2019-08-13T04:21:14+00:00"
         },
         {
             "name": "unisharp/laravel-ckeditor",

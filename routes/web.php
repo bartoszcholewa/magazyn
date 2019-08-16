@@ -26,6 +26,8 @@ Route::resource('rolls', 'RollsController');
 Route::get('/rolls/get/{id}', 'OrdersController@getRolls');
 Route::patch('/orders/{id}', 'OrdersController@wydrukowane');
 Route::get('/orders/{id}/verified', 'OrdersController@verified');
+Route::get('/orders/{id}/finished', 'OrdersController@finished');
+Route::get('/orders/{id}/printed', 'OrdersController@printed');
 Route::resource('orders', 'OrdersController');
 Route::get('/planplastykow', 'PlanPlastykowController@podglad')->name('planplastykow.podglad');
 Route::get('/planplastykow/edycja', 'PlanPlastykowController@edycja')->name('planplastykow.edycja');
