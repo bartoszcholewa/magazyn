@@ -39,4 +39,5 @@ class Order extends Model
         $this->timestamps = false;
         return $this;
     }
+
 }
