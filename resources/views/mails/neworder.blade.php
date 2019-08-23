@@ -13,7 +13,7 @@ Użytkownik {{ $user->name }} stworzył nowe zlecenie: <a href="{{ config('optio
     </tr>
     <tr>
       <td valign="MIDDLE" height="17" bgcolor="#CFE7F5"
-        align="CENTER"><font face="Arial">{{ $order->order_QUANTITY }} x {{$order->material->material_TYPE}}</font></td>
+        align="CENTER"><font face="Arial">{{ $order->order_QUANTITY }} x {{$order->material->material_TYPE}} @if($order->order_LAMINATE == 1) + laminacja @endif</font></td>
     </tr>
     <tr>
       <td valign="MIDDLE" height="17" bgcolor="#66FF00"

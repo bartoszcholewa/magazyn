@@ -22,6 +22,8 @@
                         - Typ opcji "Autoload" w mailach określa czy maile mają być wysłane na ten mail, czy nie.<br>
                         - Dodano możliwość zmiany statusu zlecenia z pozycji podglądu zlecenia<br>
                         - Dodano opcję filtrowania listy zleceń / wyszukiwanie<br>
+                        - Dodano "+ laminacja" w module mailowym do Planu Plastyków (OOCalc)<br>
+                        - Poprawiono sortowanie listy rolek po dacie rolki<br>
                     </p>
                 </div>
             </div>

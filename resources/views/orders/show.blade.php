@@ -150,7 +150,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8">
+                {{-- <div class="col-sm-8">
                     <table class="table col-sm-4">
                         <tbody>
                             <tr>
@@ -191,7 +191,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> --}}
             </div>
         @endif
 

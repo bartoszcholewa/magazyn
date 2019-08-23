@@ -8,7 +8,7 @@
     <div class="container-fluid raport">
         <div class="d-flex flex-row flex-nowrap">
             
-            @foreach ($material->rolls as $roll)
+            @foreach ($material->rolls->sortBy('roll_DATE') as $roll)
             @if($roll->roll_STATUS == 3)
             @else
             @php ($orderslenght = 0)
