@@ -14,6 +14,7 @@
         {{ Form::hidden('order_STATUS',  $order->order_STATUS) }}
         {{ Form::hidden('order_MATERIAL_ID',  $order->order_MATERIAL_ID) }}
         {{ Form::hidden('order_ROLL_ID',  $order->order_ROLL_ID) }}
+        {{ Form::hidden('order_QUANTITY', '1') }}
 
         <div class="row">
                 <div class="col col-lg-4">

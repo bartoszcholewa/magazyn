@@ -24,6 +24,10 @@
                         - Dodano opcję filtrowania listy zleceń / wyszukiwanie<br>
                         - Dodano "+ laminacja" w module mailowym do Planu Plastyków (OOCalc)<br>
                         - Poprawiono sortowanie listy rolek po dacie rolki<br>
+                        - Dodano opcję zmiany paginacji dla zleceń<br>
+                        - Dodano opcję typu strony production/development<br>
+                        - Tylko admin lub development może usuwać zatwierdzone zlecenia<br>
+                        - Poprawiono autopopulacje materiał->rolka, nie pokazuje zakończonych i pokazuje aktualny wymiar rolki<br>
                     </p>
                 </div>
             </div>

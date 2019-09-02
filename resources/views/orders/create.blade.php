@@ -15,6 +15,7 @@
         {{ Form::hidden('order_STATUS', '1') }}
         {{ Form::hidden('order_MATERIAL_ID', Request::get('material')) }}
         {{ Form::hidden('order_ROLL_ID', Request::get('roll')) }}
+        {{ Form::hidden('order_QUANTITY', '1') }}
 
         <div class="row">
                 <div class="col col-lg-4">

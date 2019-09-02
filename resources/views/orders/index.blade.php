@@ -31,7 +31,7 @@
                     <select class="form-control" id="filter" onchange="location = this.value;">
                         <option value="orders">Wszystko</option>
                         <option value="?laminate=1" {{ Request::has('laminate') ? 'selected="selected"' : null }}>Laminacja</option>
-                        <option value="?complaint=1" {{ Request::has('complaint') ? 'selected="selected"' : null }}>Reklamacja</option>
+                        <option value="?complaint=3" {{ Request::has('complaint') ? 'selected="selected"' : null }}>Reklamacja</option>
                     </select>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                             <th>Klient</th>
                             <th>Materiał</th>
                             <th>Rolka</th>
-                            <th>Podgląd</th>
+                            {{-- <th>Podgląd</th> --}}
                             <th>Utworzył</th>
                             <th>Czas w obiegu</th>
                             <th>Zatwierdzone</th>
@@ -67,6 +67,9 @@
                                     @if($order->order_LAMINATE == 1) 
                                         <i class="fas fa-paint-roller ml-1 mr-1" title="Laminacja"></i> 
                                     @endif
+                                    @if($order->order_STATUS == 3) 
+                                        <i class="fas fa-exclamation-triangle ml-1 mr-1" style="color:red" title="Reklamacja"></i> 
+                                    @endif
                                     @if($order->order_QUANTITY > 1)
                                         <b>({{$order->order_QUANTITY}} szt.)</b>
                                     @endif
@@ -76,7 +79,7 @@
                                 <td>@if($order->order_ROLL_ID == NULL) Brak @else @if(!$order->roll()->exists()) Usunięty @else {{$order->roll->roll_NAME}} @endif @endif</td> --}}
                                 <td>{{$order->material->material_NAME}}</td>
                                 <td>{{$order->roll->roll_NAME}}</td>
-                                <td>@if($order->order_URL !== NULL) <a href="{{$order->order_URL}}" target="_blank"><i class="fas fa-external-link-alt"></i></a>@endif </td>
+                                {{-- <td>@if($order->order_URL !== NULL) <a href="{{$order->order_URL}}" target="_blank"><i class="fas fa-external-link-alt"></i></a>@endif </td> --}}
                                 <td>{{$order->creator->name}}</td>
                                 <td>
                                     {{ $diff = Carbon\Carbon::parse($order->created_at)->diffForHumans(Carbon\Carbon::now(), true) }}

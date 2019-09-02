@@ -25,12 +25,12 @@
                             <div class="col">
                                 @foreach ($roll->orders as $order)
                                     @if($order->order_ACTUAR_L)
-                                        @php($orderslenght = $orderslenght + $order->order_ACTUAR_L)
+                                        @php($orderslenght += $order->order_ACTUAR_L)
                                     @else
-                                        @php($orderslenght = $orderslenght + $order->order_SAFE_L)
+                                        @php($orderslenght += $order->order_SAFE_L)
                                     @endif
                                 @endforeach
-                                <p class="text-right"><b>{{$roll->roll_LENGTH - $orderslenght}}</b> mb</p>
+                                <p class="text-right"><b>{{ round(($roll->roll_LENGTH - $orderslenght),2)}}</b> mb</p>
                             </div>
                         </div>
                     </div>
@@ -62,13 +62,13 @@
                                             {{$order->order_CLIENT_NAME}} {{$order->order_CLIENT_SURNAME}} 
                                         </td>
                                         <td>
-                                            {{$order->order_EXPECTED_L}}
+                                            <a title="Długość przewidziana">{{$order->order_EXPECTED_L}}</i>
                                         </td>
                                             <td>
-                                            {{$order->order_SAFE_L}} 
+                                            <a title="Długość bezpieczna">{{$order->order_SAFE_L}}</i>
                                         </td>
                                         <td>
-                                            {{$order->order_ACTUAR_L}}
+                                            <a title="Długość faktyczna">{{$order->order_ACTUAR_L}}</i>
                                         </td>
                                     </tr>
                                 </tbody>

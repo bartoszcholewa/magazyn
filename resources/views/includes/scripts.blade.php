@@ -95,3 +95,8 @@ $(window).on("resize", function () {
         return false;
     }
 </script>
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>

@@ -101,7 +101,31 @@ class OrdersController extends Controller
     /* Laravel Dynamic Dependent Dropdown - automatyczna populacja dostępnych rolek na podstawie wybranego materiału */
     public function getRolls($id)
     {
-        $rolls = Roll::where('roll_MATERIAL_ID', $id)->pluck('roll_NAME', 'roll_ID');
+        $rolls0 = Roll::with(['orders', 'material'])->withCount('orders')->get();
+        
+        /* actual size to each roll based on orders size */
+        $new_rolls = $rolls0->map(function ($roll) {
+            $orders_lenght = 0;
+            
+            $initial_roll_lenght = $roll->roll_LENGTH;
+            foreach ($roll->orders as $order)
+            {
+                if(isset($order->order_ACTUAR_L))
+                {
+                    $orders_lenght = $orders_lenght + $order->order_ACTUAR_L;
+                }
+                else
+                {
+                    $orders_lenght = $orders_lenght + $order->order_SAFE_L;
+                }
+            }
+            $roll['roll_ACTUAL_L'] = round(($initial_roll_lenght - $orders_lenght),2);
+            $roll['roll_NAME'] = $roll['roll_NAME'] . ' (' . $roll['roll_ACTUAL_L'] . 'mb)';
+            
+            return $roll;
+        });
+
+        $rolls = $new_rolls->where('roll_MATERIAL_ID', $id)->where('roll_STATUS', '!=', 3)->sortBy('roll_DATE')->pluck('roll_NAME', 'roll_ID');
         return json_encode($rolls);
     }
 
@@ -116,6 +140,7 @@ class OrdersController extends Controller
             $order_name_validation = 'required|unique:orders,order_NAME';
             $redirect_respond = 'Dodano PW-'.$request->input('order_NAME');
         }
+        //dd("ok3");
         /* Walidacja wprowadzonych wartości */
         $this->validate($request, [
             'order_NAME' => $order_name_validation,
@@ -142,7 +167,6 @@ class OrdersController extends Controller
             'order_GLUE' => 'nullable',
             'order_QUANTITY' => 'required',
         ]);
-        
         /* Wprowadzanie zwalidowanych danych */
         $order = new Order;
         $order->order_NAME = $request->input('order_NAME');

@@ -16,6 +16,7 @@
                         <th>Status rolki</th>
                         <th>Długość aktualna:</th>
                         <th>Ilość zleceń</th>
+                        <th>Średnia różnic <a tabindex="0" class="fas fa-info-circle" role="button" data-toggle="popover" data-trigger="focus" title="Średnia różnic" data-content="Średnia dodatkowego zużycia wszystkich zleceń z rolki. Wartość jest tym bardziej dokładna im jest więcej zleceń"></a></th>
 
 
                     </tr>
@@ -33,8 +34,9 @@
                             @if($roll->roll_STATUS == 2) Resztka @endif
                             @if($roll->roll_STATUS == 3) Zakończona @endif
                         </td>
-                        <td>{{$roll->roll_ACTUAL_L}}</td>
+                        <td>{{round($roll->roll_ACTUAL_L, 2)}}</td>
                         <td>{{$roll->orders_count}}</td>
+                        <td>{{round($roll->orders_average, 2)}}</td>
                         
                     </tr>
                 @endforeach

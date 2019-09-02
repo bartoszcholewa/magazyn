@@ -36,12 +36,19 @@ class RollsController extends Controller
         /* actual size to each roll based on orders size */
         $new_rolls = $rolls->map(function ($roll) {
             $orders_lenght = 0;
+            $orders_sum_expected = 0;
+            $orders_sum_actual = 0;
+            $orders_count = 0;
+            
             $initial_roll_lenght = $roll->roll_LENGTH;
             foreach ($roll->orders as $order)
             {
                 if(isset($order->order_ACTUAR_L))
                 {
                     $orders_lenght = $orders_lenght + $order->order_ACTUAR_L;
+                    $orders_sum_expected += $order->order_EXPECTED_L;
+                    $orders_sum_actual += $order->order_ACTUAR_L;
+                    $orders_count += 1;
                 }
                 else
                 {
@@ -49,6 +56,15 @@ class RollsController extends Controller
                 }
             }
             $roll['roll_ACTUAL_L'] = $initial_roll_lenght - $orders_lenght;
+            if($orders_sum_actual - $orders_sum_expected == 0 || $orders_count == 0)
+            {
+                $roll['orders_average'] = 0;
+            }
+            else 
+            {
+                $roll['orders_average'] = ($orders_sum_actual - $orders_sum_expected) / $orders_count;
+            }
+            
             return $roll;
         });
 
