@@ -51,3 +51,17 @@ Route::group(['middleware' => 'App\Http\Middleware\CheckIfAdmin'], function()
 
 });
 Route::post('deploy', 'DeployController@deploy');
+Route::get('/koperty', 'EnvelopesController@index');
+Route::get('/koperty/create', 'EnvelopesController@create');
+Route::post('/koperty', 'EnvelopesController@store');
+Route::get('/koperty/{id}', 'EnvelopesController@show');
+Route::delete('/koperty/{id}', 'EnvelopesController@destroy');
+Route::get('/koperty/{id}/edit', 'EnvelopesController@edit');
+Route::put('/koperty/{id}', 'EnvelopesController@update');
+Route::get('/kopertylista', 'EnvelopelistsController@index');
+Route::get('/kopertylista/create', 'EnvelopelistsController@create');
+Route::post('/kopertylista', 'EnvelopelistsController@store');
+Route::get('/kopertylista/{id}', 'EnvelopelistsController@show');
+Route::delete('/kopertylista/{id}', 'EnvelopelistsController@destroy');
+Route::get('/kopertylista/{id}/edit', 'EnvelopelistsController@edit');
+Route::put('/kopertylista/{id}', 'EnvelopelistsController@update');

@@ -73,6 +73,20 @@
                                     {{ __('Orders') }}
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('koperty') ? 'active' : null }}" href="/koperty">
+                                    <i class="fas fa-envelope"></i>
+                                    {{ __('Envelopes') }}
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('kopertylista') ? 'active' : null }}" href="/kopertylista">
+                                    <i class="far fa-envelope"></i>
+                                    {{ __('Envelope Lists') }}
+                                </a>
+                            </li>
                             
                         </ul>
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
