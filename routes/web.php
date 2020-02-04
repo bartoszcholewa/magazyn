@@ -65,3 +65,4 @@ Route::get('/kopertylista/{id}', 'EnvelopelistsController@show');
 Route::delete('/kopertylista/{id}', 'EnvelopelistsController@destroy');
 Route::get('/kopertylista/{id}/edit', 'EnvelopelistsController@edit');
 Route::put('/kopertylista/{id}', 'EnvelopelistsController@update');
+Route::get('/kopertylista/{id}/pdf', 'EnvelopelistsController@pdf');

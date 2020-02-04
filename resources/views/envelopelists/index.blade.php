@@ -13,16 +13,17 @@
                     <tr>
                         <th>ID</th>
                         <th>Nazwa listy</th>
+
                     </tr>
                 </thead>     
                 <tbody>
                 @foreach ($envelopelists as $envelopelist)
                     <tr>
                         <td>{{$envelopelist->envelopelist_ID}}</td>
-                        <td><a href="/kopertylista/{{$envelopelist->envelopelist_ID}}"><b>{{$envelopelist->envelopelist_NAME}}</b></a><br>
-                            @foreach ($envelopelist->packets->sortBy('envelopepacket_ORDER') as $envelopepacket)
+                        <td><a href="/kopertylista/{{$envelopelist->envelopelist_ID}}">{{$envelopelist->envelopelist_NAME}}</a><br>
+                            {{-- @foreach ($envelopelist->packets->sortBy('envelopepacket_ORDER') as $envelopepacket)
                                 - {{$envelopepacket->envelope->envelope_NAME}}<br>
-                            @endforeach
+                            @endforeach --}}
                         </td>
                     </tr>
                 @endforeach

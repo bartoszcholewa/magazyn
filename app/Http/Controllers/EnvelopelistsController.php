@@ -7,6 +7,7 @@ use App\Envelopelist;
 use Session;
 use Illuminate\Support\Facades\URL;
 use DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class EnvelopelistsController extends Controller
 {
@@ -93,5 +94,14 @@ class EnvelopelistsController extends Controller
         Controller::operation($redirect_respond);
 
         return redirect(Session::get('requestReferrer'))->with('success', $redirect_respond);
+    }
+
+    public function pdf($id)
+    {
+        $envelopelist = Envelopelist::find($id);
+        $customPaper = array(0,0,567.00,283.80);
+        PDF::setOptions(['defaultPaperSize' => 'legal']);
+        $pdf = PDF::loadView('envelopelists.pdf', array('envelopelist' => $envelopelist));
+        return $pdf->download('Koperty-'.$envelopelist->envelopelist_NAME.'.pdf');
     }
 }
