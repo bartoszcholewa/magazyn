@@ -59,7 +59,7 @@
                     </tbody>
                 </table>
             </div>
-            <a class="btn btn-primary btn-sm" href="/kopertylista/{{$envelopelist->envelopelist_ID}}/pdf" role="button">Pobierz PDF</a>
+            <a target="_blank" class="btn btn-primary btn-sm" href="/kopertylista/{{$envelopelist->envelopelist_ID}}/pdf" role="button">Pobierz PDF</a>
         </div>
     </div>
 </main>

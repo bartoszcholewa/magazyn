@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Envelopelist;
+use App\Envelope;
 use Session;
 use Illuminate\Support\Facades\URL;
 use DB;
@@ -27,7 +28,8 @@ class EnvelopelistsController extends Controller
 
     public function create()
     {
-        return view('envelopelists.create');
+        $envelopes = Envelope::all();
+        return view('envelopelists.create')->with('envelopes', $envelopes);
     }
 
     public function store(Request $request)
@@ -98,10 +100,22 @@ class EnvelopelistsController extends Controller
 
     public function pdf($id)
     {
+        // Wskazanie konkretnej listy kopert
         $envelopelist = Envelopelist::find($id);
-        $customPaper = array(0,0,567.00,283.80);
-        PDF::setOptions(['defaultPaperSize' => 'legal']);
-        $pdf = PDF::loadView('envelopelists.pdf', array('envelopelist' => $envelopelist));
+
+        // Określanie niestandardowego wymiaru koperty
+        $kopertaWojtek = array(0,0,325.98,453.54);
+
+        // Generowanie widoku PDF
+        $pdf = PDF::loadView('envelopelists.pdf', array('envelopelist' => $envelopelist))->setPaper($kopertaWojtek, 'landscape');
+
+        // Pobieranie PDF'a
         return $pdf->download('Koperty-'.$envelopelist->envelopelist_NAME.'.pdf');
+
+        // Podgląd PDF'a w przeglądarce
+        //return $pdf->stream();
+
+        // Podgląd HTML
+        //return view('envelopelists.pdf')->with('envelopelist', $envelopelist);
     }
 }
